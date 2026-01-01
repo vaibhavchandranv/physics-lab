@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>IGCSE Notes · Physics Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Inter font -->
+  <link rel="preconnect" href="https://rsms.me" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+  <style>
+    :root {
+      --bg: #050508;
+      --bg-soft: #050711;
+      --grid: #151821;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --muter: #6b7280;
+      --border: #272a33;
+      --border-soft: #313543;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body { min-height: 100%; }
+
+    body {
+      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      color: var(--text);
+      background-color: #000000;
+      overflow: hidden;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* background */
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, var(--grid) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .bg-fade {
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(circle at top, #050711 0, #000000 55%);
+      box-shadow:
+        inset 0 0 160px #000000,
+        inset 0 -160px 160px #000000;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .bg-noise {
+      position: fixed;
+      inset: 0;
+      opacity: 0.16;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 160 160' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+      z-index: -1;
+    }
+
+    /* layout */
+    .shell {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2.4rem 1.6rem;
+    }
+
+    .container {
+      max-width: 1000px;
+      width: 100%;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+    }
+
+    /* fade-in animation */
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-60px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes rainbowBorder {
+      0% {
+        background-position: 0% 0%, 100% 100%;
+      }
+      50% {
+        background-position: 100% 100%, 0% 0%;
+      }
+      100% {
+        background-position: 0% 0%, 100% 100%;
+      }
+    }
+
+    .header {
+      animation: fadeInDown 1s cubic-bezier(0, 0.55, 0.45, 1) forwards;
+      animation-delay: 0s;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .back-link {
+      font-size: 0.78rem;
+      text-transform: lowercase;
+      letter-spacing: 0.18em;
+      color: var(--muter);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: color 0.14s ease;
+      align-self: flex-start;
+    }
+
+    .back-link:hover {
+      color: var(--muted);
+    }
+
+    .title {
+      font-size: clamp(2.4rem, 4.4vw, 3.2rem);
+      letter-spacing: -0.04em;
+      font-weight: 400;
+      line-height: 1.06;
+      color: var(--text);
+      text-transform: lowercase;
+    }
+
+    .subtitle {
+      font-size: 0.96rem;
+      color: var(--muted);
+      max-width: 40rem;
+      line-height: 1.7;
+      font-weight: 300;
+      text-transform: lowercase;
+    }
+
+    /* units grid */
+    .units {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.2rem;
+      width: 100%;
+      animation: fadeInDown 1s cubic-bezier(0, 0.55, 0.45, 1) forwards;
+      animation-delay: 0.24s;
+    }
+
+    .unit {
+      padding: 1.8rem 1.6rem;
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      background: radial-gradient(circle at top left, #0f1219, #050508);
+      text-align: left;
+      cursor: pointer;
+      transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      position: relative;
+    }
+
+    .unit::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      padding: 1px;
+      background:
+        linear-gradient(45deg, #ff006e, #00f5ff, #ffbe0b, #8338ec, #fb5607, #ff006e),
+        linear-gradient(135deg, #06ffa5, #ff0080, #00d4ff, #ffa500, #06ffa5);
+      background-size: 200% 200%, 300% 300%;
+      background-position: 0% 0%, 0% 0%;
+      border-radius: 16px;
+      -webkit-mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      mask: 
+        linear-gradient(#fff 0 0) content-box, 
+        linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      pointer-events: none;
+      z-index: 0;
+      transition: opacity 0.14s ease;
+    }
+
+    .unit:hover::before {
+      opacity: 1;
+      animation: rainbowBorder 4s ease infinite;
+    }
+
+    .unit:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
+      border-color: transparent;
+    }
+
+    .unit-number {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muter);
+      position: relative;
+      z-index: 1;
+    }
+
+    .unit-title {
+      font-size: 1.1rem;
+      font-weight: 400;
+      color: var(--text);
+      text-transform: lowercase;
+      position: relative;
+      z-index: 1;
+      line-height: 1.3;
+    }
+
+    .unit-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+      text-transform: lowercase;
+      position: relative;
+      z-index: 1;
+    }
+
+    .unit:hover .unit-desc {
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-noise"></div>
+  <div class="bg-fade"></div>
+
+  <div class="shell">
+    <div class="container">
+      <div class="header">
+        <a href="index.html" class="back-link">← back</a>
+        <h1 class="title">
+          igcse physics 0625.
+        </h1>
+        <p class="subtitle">
+          six units covering motion, thermal physics, waves, electricity, nuclear and space physics.
+          pick a unit to begin.
+        </p>
+      </div>
+
+      <div class="units">
+        <a href="#" class="unit">
+          <div class="unit-number">unit 1</div>
+          <div class="unit-title">motion, forces and energy</div>
+          <div class="unit-desc">
+            scalars and vectors, kinematics, Newton's laws, momentum, work, power, energy.
+          </div>
+        </a>
+
+        <a href="#" class="unit">
+          <div class="unit-number">unit 2</div>
+          <div class="unit-title">thermal physics</div>
+          <div class="unit-desc">
+            kinetic model of matter, temperature, specific heat capacity, latent heat, gas laws.
+          </div>
+        </a>
+
+        <a href="#" class="unit">
+          <div class="unit-number">unit 3</div>
+          <div class="unit-title">waves</div>
+          <div class="unit-desc">
+            wave properties, reflection, refraction, diffraction, sound and light, the electromagnetic spectrum.
+          </div>
+        </a>
+
+        <a href="#" class="unit">
+          <div class="unit-number">unit 4</div>
+          <div class="unit-title">electricity and magnetism</div>
+          <div class="unit-desc">
+            charge, current, potential difference, resistance, circuits, electromagnetism, transformers.
+          </div>
+        </a>
+
+        <a href="#" class="unit">
+          <div class="unit-number">unit 5</div>
+          <div class="unit-title">nuclear physics</div>
+          <div class="unit-desc">
+            atomic structure, radioactivity, half-life, nuclear reactions, uses and safety.
+          </div>
+        </a>
+
+        <a href="#" class="unit">
+          <div class="unit-number">unit 6</div>
+          <div class="unit-title">space physics</div>
+          <div class="unit-desc">
+            earth–sun–moon system, orbits, life cycle of stars, the universe.
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
