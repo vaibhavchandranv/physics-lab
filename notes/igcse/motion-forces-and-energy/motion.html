@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>1.2 Motion · Physics Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://rsms.me" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <style>
+    :root {
+      --bg: #050508;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --muter: #6b7280;
+      --border: #272a33;
+      --box: #0f1a2e;
+      --box-border: #1e3a5f;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--text);
+      background: #000000;
+    }
+    a { color: inherit; text-decoration: none; }
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, #151821 1px, transparent 1px),
+        linear-gradient(to bottom, #151821 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -2;
+    }
+    .bg-fade {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #050711 0, #000000 55%);
+      box-shadow: inset 0 0 160px #000000;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+    }
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 180px;
+      height: 100vh;
+      border-right: 1px solid var(--border);
+      background: linear-gradient(to bottom, #050711, #050508);
+      overflow-y: auto;
+      padding: 1rem;
+      z-index: 20;
+    }
+    .sidebar-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .sidebar-back {
+      font-size: 0.7rem;
+      color: var(--muter);
+      display: block;
+      margin-bottom: 1.2rem;
+      transition: color 0.15s;
+    }
+    .sidebar-back:hover {
+      color: var(--muted);
+    }
+    .nav-item {
+      padding: 0.5rem 0.8rem;
+      border-left: 2px solid transparent;
+      cursor: pointer;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: lowercase;
+      transition: all 0.15s;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+    .nav-item:hover {
+      color: var(--text);
+      background: rgba(96, 212, 255, 0.08);
+    }
+    .nav-item.active {
+      color: var(--text);
+      border-left-color: #60d4ff;
+      background: rgba(96, 212, 255, 0.08);
+    }
+    .content {
+      grid-column: 2;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .topic-num {
+      font-size: 0.7rem;
+      color: var(--muter);
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .title {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      text-transform: lowercase;
+    }
+    .concept {
+      border: 1px solid var(--box-border);
+      background: var(--box);
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin-bottom: 1.8rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .atom {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 999px;
+      border: 1px solid #60d4ff;
+      background: radial-gradient(circle at 50% 35%, #1a3a4a, #050508);
+      position: relative;
+    }
+    .atom::before,
+    .atom::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(96, 212, 255, 0.5);
+      border-left: transparent;
+      border-bottom: transparent;
+      animation: rot 3s linear infinite;
+    }
+    .atom::after {
+      border-top: transparent;
+      border-right: transparent;
+      animation: rot-rev 3s linear infinite;
+    }
+    .atom-dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #60d4ff;
+      border-radius: 999px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    @keyframes rot { to { transform: rotate(360deg); } }
+    @keyframes rot-rev { to { transform: rotate(-360deg); } }
+    .concept h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #60d4ff;
+      margin-bottom: 0.5rem;
+      text-transform: lowercase;
+    }
+    .concept p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      text-transform: lowercase;
+    }
+    .concept ul {
+      margin: 0.6rem 0 0 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      text-transform: lowercase;
+    }
+    .concept li { margin-bottom: 0.3rem; }
+    .section { margin-bottom: 1.8rem; }
+    .section h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+      text-transform: lowercase;
+    }
+    .section h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      text-transform: lowercase;
+      margin-top: 1rem;
+    }
+    .section p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+      text-transform: lowercase;
+    }
+    .section ul {
+      margin-left: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+      text-transform: lowercase;
+    }
+    .section li { margin-bottom: 0.4rem; }
+    code {
+      font-family: monospace;
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.75em;
+      color: #a1e0ff;
+    }
+    strong { color: var(--text); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-fade"></div>
+
+  <div class="shell">
+    <div class="sidebar">
+      <a href="../../igcse.html" class="sidebar-back">← back</a>
+      <div class="sidebar-title">unit 1</div>
+      <a href="physical-quantities.html" class="nav-item">1.1 physical quantities</a>
+      <a href="motion.html" class="nav-item active">1.2 motion</a>
+      <a href="#" class="nav-item">1.3 mass &amp; weight</a>
+      <a href="#" class="nav-item">1.4 density</a>
+      <a href="#" class="nav-item">1.5 forces</a>
+      <a href="#" class="nav-item">1.6 momentum</a>
+      <a href="#" class="nav-item">1.7 energy, work &amp; power</a>
+      <a href="#" class="nav-item">1.8 pressure</a>
+    </div>
+
+    <div class="content">
+      <div class="topic-num">1.2</div>
+      <h1 class="title">motion</h1>
+
+      <div class="concept">
+        <div class="atom"><div class="atom-dot"></div></div>
+        <div>
+          <h3>speed and velocity</h3>
+          <p><strong>speed</strong> is the distance travelled per unit time. it has no direction. <strong>velocity</strong> is speed in a given direction. it has magnitude and direction.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>calculating speed</h2>
+        <p>use the equation:</p>
+        <p><code>v = s / t</code></p>
+        <p>where v is speed (m/s), s is distance (m), and t is time (s).</p>
+        
+        <h3>average speed</h3>
+        <p>when an object changes speed, calculate average speed using:</p>
+        <p><code>average speed = total distance travelled / total time taken</code></p>
+      </div>
+
+      <div class="section">
+        <h2>distance-time graphs</h2>
+        <p>these graphs show how distance changes with time.</p>
+        <ul>
+          <li><strong>horizontal line:</strong> object is at rest (not moving)</li>
+          <li><strong>straight diagonal line:</strong> object moving with constant speed</li>
+          <li><strong>curved line (getting steeper):</strong> object accelerating</li>
+          <li><strong>curved line (getting flatter):</strong> object decelerating</li>
+        </ul>
+        
+        <h3>speed from distance-time graphs</h3>
+        <p>the gradient (slope) of a straight line section equals the speed. calculate using:</p>
+        <p><code>speed = change in distance / change in time</code></p>
+      </div>
+
+      <div class="section">
+        <h2>speed-time graphs</h2>
+        <p>these graphs show how speed changes with time.</p>
+        <ul>
+          <li><strong>horizontal line:</strong> object moving with constant speed (zero acceleration)</li>
+          <li><strong>straight diagonal line (sloping up):</strong> object accelerating at constant rate</li>
+          <li><strong>straight diagonal line (sloping down):</strong> object decelerating at constant rate</li>
+          <li><strong>curved line:</strong> object accelerating or decelerating at changing rate</li>
+        </ul>
+
+        <h3>distance from speed-time graphs</h3>
+        <p>the area under a speed-time graph equals the distance travelled. for constant speed or constant acceleration, use geometry to find the area (rectangle or triangle).</p>
+      </div>
+
+      <div class="concept">
+        <div class="atom"><div class="atom-dot"></div></div>
+        <div>
+          <h3>acceleration</h3>
+          <p>acceleration is the change in velocity per unit time. use the equation:</p>
+          <p style="margin: 0.6rem 0 0 0;"><code>a = Δv / Δt</code></p>
+          <p style="margin: 0.4rem 0 0 0;">where a is acceleration (m/s²), Δv is change in velocity (m/s), and Δt is time interval (s).</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>acceleration from speed-time graphs</h2>
+        <p>the gradient (slope) of a speed-time graph equals the acceleration. a steeper line means faster acceleration.</p>
+        
+        <h3>deceleration</h3>
+        <p>deceleration is negative acceleration (slowing down). when drawing speed-time graphs, a line sloping downward represents deceleration.</p>
+      </div>
+
+      <div class="section">
+        <h2>free fall and gravity</h2>
+        <p>an object falling freely near earth's surface accelerates due to gravity. the acceleration is approximately constant:</p>
+        <p><code>g ≈ 9.8 m/s²</code></p>
+        
+        <h3>air resistance and terminal velocity</h3>
+        <p>as an object falls, air resistance increases with speed. eventually, air resistance equals the weight, and the object stops accelerating. the maximum speed reached is called <strong>terminal velocity</strong>. an object falling through a liquid (like oil) reaches terminal velocity much faster than through air.</p>
+        <p>the speed-time graph for falling with air resistance shows: steep curve at first (accelerating), then flattening (approaching constant speed as terminal velocity is reached).</p>
+      </div>
+
+      <div class="section">
+        <h2>key equations (core and supplement)</h2>
+        <ul>
+          <li><code>v = s / t</code> (speed)</li>
+          <li><code>a = Δv / Δt</code> (acceleration)</li>
+          <li><code>g ≈ 9.8 m/s²</code> (free fall)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
