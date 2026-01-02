@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>1.4 Density · Physics Lab</title>
+  <title>1.5 Forces · Physics Lab</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://rsms.me" />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
@@ -241,107 +241,127 @@
       <a href="physical-quantities.html" class="nav-item">1.1 physical quantities</a>
       <a href="motion.html" class="nav-item">1.2 motion</a>
       <a href="mass-weight.html" class="nav-item">1.3 mass &amp; weight</a>
-      <a href="density.html" class="nav-item active">1.4 density</a>
-      <a href="force.html" class="nav-item">1.5 forces</a>
+      <a href="density.html" class="nav-item">1.4 density</a>
+      <a href="force.html" class="nav-item active">1.5 forces</a>
       <a href="#" class="nav-item">1.6 momentum</a>
       <a href="#" class="nav-item">1.7 energy, work &amp; power</a>
       <a href="#" class="nav-item">1.8 pressure</a>
     </div>
 
     <div class="content">
-      <div class="topic-num">1.4</div>
-      <h1 class="title">density</h1>
+      <div class="topic-num">1.5</div>
+      <h1 class="title">forces</h1>
+
+      <div class="section">
+        <h2>1.5.1 | effects of forces</h2>
+        <h3>changes in size and shape</h3>
+        <p>forces can cause compression, extension, deformation, or permanent changes to objects.</p>
+        <h3>load–extension graphs</h3>
+        <p>attach object vertically, add equal load increments, measure length changes, plot load vs extension. linear region obeys hooke's law; beyond the limit of proportionality, the relationship becomes non-linear.</p>
+      </div>
 
       <div class="concept">
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
-          <h3>what is density?</h3>
-          <p>density is mass per unit volume. it tells you how tightly packed the matter is in an object. materials with high density pack more mass into the same volume than materials with low density.</p>
+          <h3>resultant force</h3>
+          <p>vector sum of multiple forces along the same line. f_resultant = f₁ + f₂ + f₃. when zero, object is in equilibrium.</p>
+        </div>
+      </div>
+
+      <div class="concept">
+        <div class="atom"><div class="atom-dot"></div></div>
+        <div>
+          <h3>newton's first law</strong></h3>
+          <p>object remains at rest or moves at constant velocity unless acted on by a resultant force.</p>
         </div>
       </div>
 
       <div class="section">
-        <h2>calculating density</h2>
-        <p>use the equation:</p>
-        <p><code>ρ = m / V</code></p>
-        <p>where ρ is density (kg/m³ or g/cm³), m is mass (kg or g), and v is volume (m³ or cm³).</p>
+        <h3>changes in velocity</h3>
+        <p>resultant force changes velocity by:</p>
+        <ul>
+          <li>changing direction (perpendicular force)</li>
+          <li>changing speed (parallel force)</li>
+        </ul>
+
+        <h3>spring constant</h3>
+        <p><code>k = f/x</code> (unit N/m). hooke's law: <code>f = kx</code> within the limit of proportionality, where material stops obeying hooke's law. the limit of proportionality is shown by the point where the load-extension graph stops being a line, and curves away.</p>
+      </div>
+      
+      <div class="concept">
+        <div class="atom"><div class="atom-dot"></div></div>
+        <div>
+          <h3>newton's second law</h3>
+          <p><code>f = ma</code>, where m is mass of object and a is acceleration of object. force and acceleration are in the same direction.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>circular motion due to perpendicular force</h3>
+        <ul>
+          <li>speed increases if force increases (constant mass and radius)</li>
+          <li>radius decreases if force increases (constant mass and speed)</li>
+          <li>increased mass requires increased force (constant speed and radius)</li>
+        </ul>
+
+        <h3>friction</h3>
+        <p><strong>solid friction:</strong> opposes motion between surfaces, causes heating.</p>
+        <p><strong>liquid drag:</strong> opposes motion through liquids, increases with speed and viscosity.</p>
+        <p><strong>air resistance:</strong> opposes motion through air, proportional to v².</p>
+      </div>
+
+      <div class="section">
+        <h2>1.5.2 | turning effect of forces</h2>
+        <h3>moment of a force</h3>
+        <p>measure of a force's turning effect about a pivot.</p>
+      </div>
+
+      <div class="concept">
+        <div class="atom"><div class="atom-dot"></div></div>
+        <div>
+          <h3>moment definition</h3>
+          <p><code>m = f × d</code> (unit: Nm), where d is perpendicular distance from pivot.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>complex situations</h3>
+        <p>calculate moment for each force separately, sum clockwise and anticlockwise moments, equate them for equilibrium.</p>
+
+        <h3>experimental demonstration</h3>
+        <p>hang mass on one side of meter rule pivot, balance with another mass, measure distances. verify: f₁ × d₁ = f₂ × d₂.</p>
         
-        <h3>rearranged forms</h3>
-        <p><code>m = ρV</code> (find mass if you know density and volume)</p>
-        <p><code>V = m / ρ</code> (find volume if you know mass and density)</p>
+        <p>you can use moments to find mass! mark centre of mass, find the distance from the pivot to the centre of mass, then find the moments on the object. the missing moment value divided by the distance from the centre of mass to the pivot will be the weight of the object, which after dividing by 9.8, will be the mass!</p>
+      </div>
+
+      <div class="concept">
+        <div class="atom"><div class="atom-dot"></div></div>
+        <div>
+          <h3>centre of gravity</h3>
+          <p>the point where the entire weight of an object acts. for uniformly-shaped objects, it is at the geometric centre.</p>
+        </div>
       </div>
 
       <div class="section">
-        <h2>measuring density of a liquid</h2>
-        <ul>
-          <li><strong>measure the mass:</strong> use a balance to weigh a clean, empty measuring cylinder. pour the liquid into the cylinder and weigh it again. subtract to find the liquid's mass.</li>
-          <li><strong>measure the volume:</strong> read the volume directly from the measuring cylinder scale.</li>
-          <li><strong>calculate density:</strong> use ρ = m / V</li>
-        </ul>
-      </div>
+        <h2>1.5.3 | centre of gravity</h2>
+        <p>the single point where the the entire weight of an object acts is the centre of gravity.</p>
 
-      <div class="section">
-        <h2>measuring density of a regularly shaped solid</h2>
-        <ul>
-          <li><strong>measure the mass:</strong> use a balance to weigh the solid.</li>
-          <li><strong>measure the volume:</strong> use a ruler to measure the dimensions (length, width, height). calculate volume using the shape's formula (e.g., for a cube: V = length × width × height).</li>
-          <li><strong>calculate density:</strong> use ρ = m / V</li>
-        </ul>
-      </div>
+        <h3>finding centre of gravity of an irregular shape</h3>
+        <p>hang the shape from different points near its edge. hang a plumb line from the same point and draw a vertical line on the shape. repeat from multiple holes. the centre of gravity is where the lines intersect.</p>
 
-      <div class="section">
-        <h2>measuring density of an irregular solid</h2>
-        <p>use the displacement method (also called the water displacement method):</p>
+        <h3>effect of position of centre of gravity on stability</h3>
         <ul>
-          <li><strong>measure the mass:</strong> use a balance to weigh the solid.</li>
-          <li><strong>measure the volume by displacement:</strong> fill a measuring cylinder with water and record the initial volume. carefully place the solid into the water (it must sink). record the new volume. the difference is the solid's volume.</li>
-          <li><strong>calculate density:</strong> use ρ = m / V</li>
+            <li>lower centre of gravity = more stable</li>
+            <li>higher centre of gravity = less stable</li>
+            <li>wider base = more stable</li>
+            <li>narrow base = less stable</li>
+            <li>line of action of weight must fall within base for stability</li>
         </ul>
-        <p>this method works for any solid that sinks in the liquid used.</p>
+        <p>the line of action is a straight, imaginary vertical line through the centre of gravity.</p>
       </div>
+      
+    </div>
 
-      <div class="section">
-        <h2>floating and sinking</h2>
-        
-        <h3>does an object float?</h3>
-        <p>compare the density of the object to the density of the liquid it's in:</p>
-        <ul>
-          <li>if density of object &lt; density of liquid → object floats</li>
-          <li>if density of object = density of liquid → object is neutrally buoyant (floats at any depth)</li>
-          <li>if density of object &gt; density of liquid → object sinks</li>
-        </ul>
-
-        <h3>why do objects float?</h3>
-        <p>an object floats when the upward force from the liquid (buoyancy) equals the object's weight. a less dense object displaces enough liquid to create an upward force equal to its weight, so it floats.</p>
-      </div>
-
-      <div class="section">
-        <h2>liquids floating on liquids (supplement)</h2>
-        <p>when two immiscible (non-mixing) liquids are placed together, the less dense liquid will float on top of the denser liquid.</p>
-        <ul>
-          <li>if density of liquid a &lt; density of liquid b → liquid a floats on top of liquid b</li>
-          <li>if density of liquid a &gt; density of liquid b → liquid a sinks below liquid b</li>
-        </ul>
-        <p>example: oil (less dense) floats on water (more dense).</p>
-      </div>
-
-      <div class="section">
-        <h2>common density values</h2>
-        <ul>
-          <li>water: 1000 kg/m³ or 1 g/cm³</li>
-          <li>ice: 917 kg/m³ (less dense than water, so it floats)</li>
-          <li>aluminum: 2700 kg/m³</li>
-          <li>iron: 7900 kg/m³</li>
-          <li>air: 1.2 kg/m³</li>
-        </ul>
-      </div>
-
-      <div class="section">
-        <h2>key equation</h2>
-        <ul>
-          <li><code>ρ = m / V</code> (density)</li>
-        </ul>
-      </div>
     </div>
   </div>
 </body>
