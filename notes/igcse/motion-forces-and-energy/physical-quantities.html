@@ -43,26 +43,73 @@
       pointer-events: none;
       z-index: -1;
     }
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem 1.5rem;
+    .shell {
       min-height: 100vh;
+      display: grid;
+      grid-template-columns: 180px 1fr;
     }
-    .back-link {
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 180px;
+      height: 100vh;
+      border-right: 1px solid var(--border);
+      background: linear-gradient(to bottom, #050711, #050508);
+      overflow-y: auto;
+      padding: 1rem;
+      z-index: 20;
+    }
+    .sidebar-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .sidebar-back {
       font-size: 0.7rem;
       color: var(--muter);
-      display: inline-block;
-      margin-bottom: 1.5rem;
+      display: block;
+      margin-bottom: 1.2rem;
       transition: color 0.15s;
     }
-    .back-link:hover {
+    .sidebar-back:hover {
       color: var(--muted);
+    }
+    .nav-item {
+      padding: 0.5rem 0.8rem;
+      border-left: 2px solid transparent;
+      cursor: pointer;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: lowercase;
+      transition: all 0.15s;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+    .nav-item:hover {
+      color: var(--text);
+      background: rgba(96, 212, 255, 0.08);
+    }
+    .nav-item.active {
+      color: var(--text);
+      border-left-color: #60d4ff;
+      background: rgba(96, 212, 255, 0.08);
+    }
+    .content {
+      grid-column: 2;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
     }
     .topic-num {
       font-size: 0.7rem;
       color: var(--muter);
-      text-transform: uppercase;
+      text-transform: lowercase;
       letter-spacing: 0.1em;
       margin-bottom: 0.5rem;
     }
@@ -131,12 +178,14 @@
       font-size: 0.82rem;
       color: var(--muted);
       line-height: 1.6;
+      text-transform: lowercase;
     }
     .concept ul {
       margin: 0.6rem 0 0 1rem;
       font-size: 0.8rem;
       color: var(--muted);
       line-height: 1.6;
+      text-transform: lowercase;
     }
     .concept li { margin-bottom: 0.3rem; }
     .section { margin-bottom: 1.8rem; }
@@ -147,17 +196,27 @@
       margin-bottom: 0.7rem;
       text-transform: lowercase;
     }
+    .section h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      text-transform: lowercase;
+      margin-top: 1rem;
+    }
     .section p {
       font-size: 0.82rem;
       color: var(--muted);
       line-height: 1.7;
       margin-bottom: 0.6rem;
+      text-transform: lowercase;
     }
     .section ul {
       margin-left: 1.2rem;
       font-size: 0.8rem;
       color: var(--muted);
       line-height: 1.7;
+      text-transform: lowercase;
     }
     .section li { margin-bottom: 0.4rem; }
     code {
@@ -175,95 +234,95 @@
   <div class="bg-grid"></div>
   <div class="bg-fade"></div>
 
-  <div class="container">
-    <a href="index.html" class="back-link">← back to unit 1</a>
-    <div class="topic-num">1.1</div>
-    <h1 class="title">physical quantities and measurement</h1>
+  <div class="shell">
+    <div class="sidebar">
+      <a href="index.html" class="sidebar-back">← back</a>
+      <div class="sidebar-title">unit 1</div>
+      <a href="#" class="nav-item active">1.1 physical quantities</a>
+      <a href="#" class="nav-item">1.2 motion</a>
+      <a href="#" class="nav-item">1.3 mass &amp; weight</a>
+      <a href="#" class="nav-item">1.4 density</a>
+      <a href="#" class="nav-item">1.5 forces</a>
+      <a href="#" class="nav-item">1.6 momentum</a>
+      <a href="#" class="nav-item">1.7 energy, work &amp; power</a>
+      <a href="#" class="nav-item">1.8 pressure</a>
+    </div>
 
-    <div class="concept">
-      <div class="atom"><div class="atom-dot"></div></div>
-      <div>
-        <h3>physical quantities</h3>
-        <p>Any measurable property expressed as a number with a unit. Examples: length (5 m), mass (2 kg), time (3 s).</p>
+    <div class="content">
+      <div class="topic-num">1.1</div>
+      <h1 class="title">physical quantities and measurement</h1>
+
+      <div class="section">
+        <h2>measurements</h2>
+        
+        <h3>measuring length</h3>
+        <p>use a ruler to measure lengths. place the object along the scale with the zero mark at one end. read the measurement at the other end. always read perpendicular to the scale to avoid parallax error.</p>
+
+        <h3>measuring volume</h3>
+        <p>use a measuring cylinder to find the volume of liquids or irregular solids. read the volume at the bottom of the meniscus (curved surface) with your eye level with the scale to avoid parallax error.</p>
+
+        <h3>measuring time</h3>
+        <p>use a clock or digital timer to measure time intervals. a stopwatch is accurate to about 0.01 s. for short, repeating events (like a pendulum swing), measure the time for multiple cycles and divide by the number of cycles to reduce error.</p>
       </div>
-    </div>
 
-    <div class="section">
-      <h2>SI base units</h2>
-      <ul>
-        <li><strong>length</strong> – metre (m)</li>
-        <li><strong>mass</strong> – kilogram (kg)</li>
-        <li><strong>time</strong> – second (s)</li>
-        <li><strong>current</strong> – ampere (A)</li>
-        <li><strong>temperature</strong> – kelvin (K)</li>
-        <li><strong>amount</strong> – mole (mol)</li>
-        <li><strong>intensity</strong> – candela (cd)</li>
-      </ul>
-    </div>
-
-    <div class="section">
-      <h2>derived units</h2>
-      <ul>
-        <li>de>speed = m/s</code></li>
-        <li>de>acceleration = m/s²</code></li>
-        <li>de>force = N = kg·m/s²</code></li>
-        <li>de>energy = J = kg·m²/s²</code></li>
-        <li>de>power = W = J/s</code></li>
-        <li>de>pressure = Pa = N/m²</code></li>
-      </ul>
-    </div>
-
-    <div class="concept">
-      <div class="atom"><div class="atom-dot"></div></div>
-      <div>
-        <h3>scalars vs vectors</h3>
-        <p>Scalars have magnitude only (speed, mass). Vectors have magnitude and direction (velocity, force, displacement).</p>
+      <div class="concept">
+        <div class="atom"><div class="atom-dot"></div></div>
+        <div>
+          <h3>scalar quantities</h3>
+          <p>have magnitude (size) only. no direction needed. examples: distance, speed, time, mass, energy, temperature.</p>
+        </div>
       </div>
-    </div>
 
-    <div class="section">
-      <h2>parallax error</h2>
-      <p>Reading an instrument at an angle rather than straight on. The value appears to shift depending on viewing angle.</p>
-      <ul>
-        <li>Read measuring cylinders at eye level with the meniscus</li>
-        <li>Read rulers perpendicular to the scale</li>
-        <li>Read analogue meters from directly in front</li>
-      </ul>
-      <p>Parallax error is <strong>systematic</strong> – it cannot be removed by averaging. You must use correct technique.</p>
-    </div>
+      <div class="concept">
+        <div class="atom"><div class="atom-dot"></div></div>
+        <div>
+          <h3>vector quantities</h3>
+          <p>have magnitude and direction. direction is essential to describe them fully. examples: force, weight, velocity, acceleration, momentum, electric field strength, gravitational field strength.</p>
+        </div>
+      </div>
 
-    <div class="section">
-      <h2>systematic error</h2>
-      <p>Error that shifts all measurements in one direction (consistently too high or too low).</p>
-      <ul>
-        <li><strong>Zero error:</strong> Thermometer reads 0.2°C in ice</li>
-        <li><strong>Parallax:</strong> Always reading a scale from the side</li>
-        <li><strong>Calibration:</strong> A ruler has shrunk slightly</li>
-        <li><strong>Heat loss:</strong> Cooling experiment loses heat to surroundings</li>
-      </ul>
-      <p>Differs from random error (scattered readings). Averaging does not reduce systematic error – you must fix the cause.</p>
-    </div>
+      <div class="section">
+        <h2>finding resultant vectors</h2>
+        <p>the resultant is the single vector that has the same effect as two or more vectors combined. for two vectors at right angles, use the pythagorean theorem:</p>
+        <p><code>R² = A² + B²</code></p>
+        <p>alternatively, draw the vectors to scale on graph paper, place them head-to-tail, and measure the resultant from the start of the first vector to the end of the second.</p>
+      </div>
 
-    <div class="section">
-      <h2>measurement uncertainty</h2>
-      <p>Every measurement has limits to its precision. A ruler's smallest division is 1 mm, so uncertainty is ±0.5 mm. Record measurements to match your instrument's precision.</p>
-    </div>
+      <div class="section">
+        <h2>parallax error</h2>
+        <p>reading an instrument at an angle rather than straight on. the value appears to shift depending on viewing angle.</p>
+        <ul>
+          <li>read measuring cylinders at eye level with the meniscus</li>
+          <li>read rulers perpendicular to the scale</li>
+          <li>read analogue meters from directly in front</li>
+        </ul>
+        <p>parallax error is <strong>systematic</strong> – it cannot be removed by averaging. you must use correct technique.</p>
+      </div>
 
-    <div class="section">
-      <h2>significant figures</h2>
-      <ul>
-        <li>All non-zero digits are significant (2.5 = 2 sig figs)</li>
-        <li>Zeros between non-zero digits are significant (2.05 = 3 sig figs)</li>
-        <li>Leading zeros are not significant (0.025 = 2 sig figs)</li>
-        <li>Trailing zeros after decimal point are significant (2.50 = 3 sig figs)</li>
-      </ul>
-    </div>
+      <div class="section">
+        <h2>systematic error</h2>
+        <p>error that shifts all measurements in one direction (consistently too high or too low).</p>
+        <ul>
+          <li><strong>zero error:</strong> thermometer reads 0.2°c in ice</li>
+          <li><strong>parallax:</strong> always reading a scale from the side</li>
+          <li><strong>calibration:</strong> a ruler has shrunk slightly</li>
+        </ul>
+        <p>differs from random error (scattered readings). averaging does not reduce systematic error – you must fix the cause.</p>
+      </div>
 
-    <div class="concept">
-      <div class="atom"><div class="atom-dot"></div></div>
-      <div>
-        <h3>SI prefixes</h3>
-        <p>kilo (k) = 10³, mega (M) = 10⁶, milli (m) = 10⁻³, micro (μ) = 10⁻⁶, nano (n) = 10⁻⁹.</p>
+      <div class="section">
+        <h2>measurement uncertainty</h2>
+        <p>every measurement has limits to its precision. a ruler's smallest division is 1 mm, so uncertainty is ±0.5 mm. record measurements to match your instrument's precision.</p>
+      </div>
+
+      <div class="section">
+        <h2>significant figures</h2>
+        <ul>
+          <li>all non-zero digits are significant (2.5 = 2 sig figs)</li>
+          <li>zeros between non-zero digits are significant (2.05 = 3 sig figs)</li>
+          <li>leading zeros are not significant (0.025 = 2 sig figs)</li>
+          <li>trailing zeros after decimal point are significant (2.50 = 3 sig figs)</li>
+        </ul>
       </div>
     </div>
   </div>
