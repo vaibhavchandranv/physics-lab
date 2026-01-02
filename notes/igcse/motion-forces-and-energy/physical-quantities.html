@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>1.1 Physical Quantities · Physics Lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://rsms.me" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <style>
+    :root {
+      --bg: #050508;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --muter: #6b7280;
+      --border: #272a33;
+      --box: #0f1a2e;
+      --box-border: #1e3a5f;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--text);
+      background: #000000;
+    }
+    a { color: inherit; text-decoration: none; }
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, #151821 1px, transparent 1px),
+        linear-gradient(to bottom, #151821 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -2;
+    }
+    .bg-fade {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #050711 0, #000000 55%);
+      box-shadow: inset 0 0 160px #000000;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      min-height: 100vh;
+    }
+    .back-link {
+      font-size: 0.7rem;
+      color: var(--muter);
+      display: inline-block;
+      margin-bottom: 1.5rem;
+      transition: color 0.15s;
+    }
+    .back-link:hover {
+      color: var(--muted);
+    }
+    .topic-num {
+      font-size: 0.7rem;
+      color: var(--muter);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .title {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      text-transform: lowercase;
+    }
+    .concept {
+      border: 1px solid var(--box-border);
+      background: var(--box);
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin-bottom: 1.8rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .atom {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 999px;
+      border: 1px solid #60d4ff;
+      background: radial-gradient(circle at 50% 35%, #1a3a4a, #050508);
+      position: relative;
+    }
+    .atom::before,
+    .atom::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(96, 212, 255, 0.5);
+      border-left: transparent;
+      border-bottom: transparent;
+      animation: rot 3s linear infinite;
+    }
+    .atom::after {
+      border-top: transparent;
+      border-right: transparent;
+      animation: rot-rev 3s linear infinite;
+    }
+    .atom-dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #60d4ff;
+      border-radius: 999px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    @keyframes rot { to { transform: rotate(360deg); } }
+    @keyframes rot-rev { to { transform: rotate(-360deg); } }
+    .concept h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #60d4ff;
+      margin-bottom: 0.5rem;
+      text-transform: lowercase;
+    }
+    .concept p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .concept ul {
+      margin: 0.6rem 0 0 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+    .concept li { margin-bottom: 0.3rem; }
+    .section { margin-bottom: 1.8rem; }
+    .section h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+      text-transform: lowercase;
+    }
+    .section p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+    .section ul {
+      margin-left: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    .section li { margin-bottom: 0.4rem; }
+    code {
+      font-family: monospace;
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.75em;
+      color: #a1e0ff;
+    }
+    strong { color: var(--text); font-weight: 600; }
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-fade"></div>
+
+  <div class="container">
+    <a href="index.html" class="back-link">← back to unit 1</a>
+    <div class="topic-num">1.1</div>
+    <h1 class="title">physical quantities and measurement</h1>
+
+    <div class="concept">
+      <div class="atom"><div class="atom-dot"></div></div>
+      <div>
+        <h3>physical quantities</h3>
+        <p>Any measurable property expressed as a number with a unit. Examples: length (5 m), mass (2 kg), time (3 s).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>SI base units</h2>
+      <ul>
+        <li><strong>length</strong> – metre (m)</li>
+        <li><strong>mass</strong> – kilogram (kg)</li>
+        <li><strong>time</strong> – second (s)</li>
+        <li><strong>current</strong> – ampere (A)</li>
+        <li><strong>temperature</strong> – kelvin (K)</li>
+        <li><strong>amount</strong> – mole (mol)</li>
+        <li><strong>intensity</strong> – candela (cd)</li>
+      </ul>
+    </div>
+
+    <div class="section">
+      <h2>derived units</h2>
+      <ul>
+        <li>de>speed = m/s</code></li>
+        <li>de>acceleration = m/s²</code></li>
+        <li>de>force = N = kg·m/s²</code></li>
+        <li>de>energy = J = kg·m²/s²</code></li>
+        <li>de>power = W = J/s</code></li>
+        <li>de>pressure = Pa = N/m²</code></li>
+      </ul>
+    </div>
+
+    <div class="concept">
+      <div class="atom"><div class="atom-dot"></div></div>
+      <div>
+        <h3>scalars vs vectors</h3>
+        <p>Scalars have magnitude only (speed, mass). Vectors have magnitude and direction (velocity, force, displacement).</p>
+      </div>
+    </div>
+
+    <div class="section">
+      <h2>parallax error</h2>
+      <p>Reading an instrument at an angle rather than straight on. The value appears to shift depending on viewing angle.</p>
+      <ul>
+        <li>Read measuring cylinders at eye level with the meniscus</li>
+        <li>Read rulers perpendicular to the scale</li>
+        <li>Read analogue meters from directly in front</li>
+      </ul>
+      <p>Parallax error is <strong>systematic</strong> – it cannot be removed by averaging. You must use correct technique.</p>
+    </div>
+
+    <div class="section">
+      <h2>systematic error</h2>
+      <p>Error that shifts all measurements in one direction (consistently too high or too low).</p>
+      <ul>
+        <li><strong>Zero error:</strong> Thermometer reads 0.2°C in ice</li>
+        <li><strong>Parallax:</strong> Always reading a scale from the side</li>
+        <li><strong>Calibration:</strong> A ruler has shrunk slightly</li>
+        <li><strong>Heat loss:</strong> Cooling experiment loses heat to surroundings</li>
+      </ul>
+      <p>Differs from random error (scattered readings). Averaging does not reduce systematic error – you must fix the cause.</p>
+    </div>
+
+    <div class="section">
+      <h2>measurement uncertainty</h2>
+      <p>Every measurement has limits to its precision. A ruler's smallest division is 1 mm, so uncertainty is ±0.5 mm. Record measurements to match your instrument's precision.</p>
+    </div>
+
+    <div class="section">
+      <h2>significant figures</h2>
+      <ul>
+        <li>All non-zero digits are significant (2.5 = 2 sig figs)</li>
+        <li>Zeros between non-zero digits are significant (2.05 = 3 sig figs)</li>
+        <li>Leading zeros are not significant (0.025 = 2 sig figs)</li>
+        <li>Trailing zeros after decimal point are significant (2.50 = 3 sig figs)</li>
+      </ul>
+    </div>
+
+    <div class="concept">
+      <div class="atom"><div class="atom-dot"></div></div>
+      <div>
+        <h3>SI prefixes</h3>
+        <p>kilo (k) = 10³, mega (M) = 10⁶, milli (m) = 10⁻³, micro (μ) = 10⁻⁶, nano (n) = 10⁻⁹.</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
