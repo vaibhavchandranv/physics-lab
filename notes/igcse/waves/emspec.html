@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>3.3 electromagnetic spectrum · physics lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://rsms.me" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <style>
+    :root {
+      --bg: #050508;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --muter: #6b7280;
+      --border: #272a33;
+      --box: #0f1a2e;
+      --box-border: #1e3a5f;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--text);
+      background: #000000;
+    }
+    a { color: inherit; text-decoration: none; }
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, #151821 1px, transparent 1px),
+        linear-gradient(to bottom, #151821 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -2;
+    }
+    .bg-fade {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #050711 0, #000000 55%);
+      box-shadow: inset 0 0 160px #000000;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+    }
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 180px;
+      height: 100vh;
+      border-right: 1px solid var(--border);
+      background: linear-gradient(to bottom, #050711, #050508);
+      overflow-y: auto;
+      padding: 1rem;
+      z-index: 20;
+    }
+    .sidebar-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .sidebar-back {
+      font-size: 0.7rem;
+      color: var(--muter);
+      display: block;
+      margin-bottom: 1.2rem;
+      transition: color 0.15s;
+    }
+    .sidebar-back:hover {
+      color: var(--muted);
+    }
+    .nav-item {
+      padding: 0.5rem 0.8rem;
+      border-left: 2px solid transparent;
+      cursor: pointer;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: lowercase;
+      transition: all 0.15s;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+    .nav-item:hover {
+      color: var(--text);
+      background: rgba(96, 212, 255, 0.08);
+    }
+    .nav-item.active {
+      color: var(--text);
+      border-left-color: #60d4ff;
+      background: rgba(96, 212, 255, 0.08);
+    }
+    .content {
+      grid-column: 2;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .topic-num {
+      font-size: 0.7rem;
+      color: var(--muter);
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .title {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      text-transform: lowercase;
+    }
+    .concept {
+      border: 1px solid var(--box-border);
+      background: var(--box);
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin-bottom: 1.8rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .atom {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 999px;
+      border: 1px solid #60d4ff;
+      background: radial-gradient(circle at 50% 35%, #1a3a4a, #050508);
+      position: relative;
+    }
+    .atom::before,
+    .atom::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(96, 212, 255, 0.5);
+      border-left: transparent;
+      border-bottom: transparent;
+      animation: rot 3s linear infinite;
+    }
+    .atom::after {
+      border-top: transparent;
+      border-right: transparent;
+      animation: rot-rev 3s linear infinite;
+    }
+    .atom-dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #60d4ff;
+      border-radius: 999px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    @keyframes rot { to { transform: rotate(360deg); } }
+    @keyframes rot-rev { to { transform: rotate(-360deg); } }
+    .concept h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #60d4ff;
+      margin-bottom: 0.5rem;
+      text-transform: lowercase;
+    }
+    .concept p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      text-transform: lowercase;
+    }
+    .concept ul {
+      margin: 0.6rem 0 0 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      text-transform: lowercase;
+    }
+    .concept li { margin-bottom: 0.3rem; }
+    .section { margin-bottom: 1.8rem; }
+    .section h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+      text-transform: lowercase;
+    }
+    .section h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      text-transform: lowercase;
+      margin-top: 1rem;
+    }
+    .section p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+      text-transform: lowercase;
+    }
+    .section ul {
+      margin-left: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+      text-transform: lowercase;
+    }
+    .section li { margin-bottom: 0.4rem; }
+    code {
+      font-family: monospace;
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.75em;
+      color: #a1e0ff;
+    }
+    strong { color: var(--text); font-weight: 600; }
+    .section img {
+      max-width: 85%;
+      height: auto;
+      display: block;
+      padding: 2em;
+      margin: 3rem auto;
+      border-radius: 8px;
+      border: 1px solid var(--box-border);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-fade"></div>
+
+  <div class="shell">
+    <div class="sidebar">
+      <a href="index.html" class="sidebar-back">← back</a>
+      <div class="sidebar-title">unit 3</div>
+      <a href="general-properties.html" class="nav-item">3.1 general properties of waves</a>
+      <a href="light.html" class="nav-item">3.2 light</a>
+      <a href="emspec.html" class="nav-item active">3.3 electromagnetic spectrum</a>
+      <a href="sound.html" class="nav-item">3.4 sound</a>
+    </div>
+
+    <div class="content">
+      <div class="topic-num">3.3</div>
+      <h1 class="title">electromagnetic spectrum</h1>
+
+
+      <div class="concept">
+        <div class="atom"><div class="atom-dot"></div></div>
+        <div>
+          <h3>electromagnetic spectrum</h3>
+          <p>all electromagnetic waves travel at the same speed in a vacuum (3.0 × 10⁸ m/s), approximately the same in air. ordered by frequency (lowest to highest): radio waves, microwaves, infrared, visible light, ultraviolet, X-rays, gamma rays.</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <h3>radio waves</h3>
+        <p>lowest frequency, longest wavelength. used for radio and television transmissions, astronomy, and radio frequency identification (RFID). can penetrate most materials and travel long distances. RFID tags identify objects and animals. Bluetooth uses radio waves for short-range wireless communication; radio waves pass through walls but signal is weakened.</p>
+        <h3>microwaves</h3>
+        <p>higher frequency than radio waves. used for satellite television, mobile phones (cell phones), microwave ovens, and telecommunications. can penetrate some walls; only need short aerials for transmission and reception. satellite phones use low orbit and geosynchronous satellites. mobile phones and wireless internet use microwaves because they penetrate walls and require short aerials.</p>
+        <h3>infrared</h3>
+        <p>higher frequency than microwaves. used for electric grills, short range communications (remote controllers for televisions and intruder alarms), thermal imaging, and optical fibres. absorbed by surfaces causing heating. causes skin burns from prolonged exposure to strong infrared sources. optical fibres use infrared light to carry signals through glass fibres for cable television and high-speed broadband.</p>
+        <h3>visible light</h3>
+        <p>higher frequency than infrared. narrow band of electromagnetic spectrum. used for vision, photography, and illumination. the only radiation humans can see directly. optical fibres use visible light to carry signals through glass fibres.</p>
+        <h3>ultraviolet</h3>
+        <p>higher frequency than visible light. used for security marking (detecting fake banknotes), detecting fake documents, and sterilising water. causes damage to surface cells and eyes, leading to skin cancer and eye conditions with excessive exposure. protection needed through sunscreen and protective eyewear.</p>
+        <h3>X-rays</h3>
+        <p>higher frequency than ultraviolet. used for medical imaging (X-ray machines), security scanning (airport security), and industrial inspection. can penetrate soft tissues but are absorbed by bones and metals. excessive exposure can cause skin burns and increase cancer risk.</p>
+        <h3>gamma rays</h3>
+        <p>highest frequency, shortest wavelength. used for sterilising medical equipment, food preservation, and cancer treatment (radiotherapy). can penetrate most materials and are highly ionising. excessive exposure can cause severe burns and increase cancer risk. requires maximum shielding, with thick lead walls</p>
+        <h3>speed of electromagnetic waves</h3>
+        <p>all electromagnetic waves travel at the same speed in a vacuum (3.0 × 10⁸ m/s), approximately the same in air. their speed is constant regardless of frequency or wavelength, by the equation <code>v = fλ</code>.</p>
+        <img src="https://cdn.savemyexams.com/cdn-cgi/image/f=auto,width=3840/https://cdn.savemyexams.com/uploads/2024/07/959_em-spectrum-diagram">
+        <h3>harmful effects of electromagnetic radiation</h3>
+        <ul>
+            <li><strong>microwaves</strong>: internal heating of body cells at high exposure levels</li>
+            <li><strong>infrared</strong>: skin burns from prolonged exposure to strong infrared sources</li>
+            <li><strong>ultraviolet</strong>: skin burns and increased risk of skin cancer</li>
+            <li><strong>X-rays and gamma rays</strong>: ionising radiation that can damage living cells, leading to burns and increased cancer risk</li>
+        </ul>
+        <h3>satellite communications</h3>
+        <p>communication with artificial satellites uses mainly microwaves. low orbit satellites used by some satellite phones for personal communication. geosynchronous satellites used for direct broadcast satellite television, remaining above same location on Earth.</p>
+        <h3>digital vs analogue signals</h3>
+        <p>digital signals use discrete values (on/off, 1/0) while analogue signals vary continuously. digital signals offer advantages: higher rate of data transmission, increased range due to accurate signal regeneration between repeaters, better quality reception with minimal noise.</p>
+        <img src="data:image/jpeg;base64,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">
+        <h3>sound transmission</h3>
+        <p>sound can be transmitted as digital or analogue signal. digital transmission offers better quality and longer range than analogue transmission due to signal regeneration capabilities.</p>
+      </div>
+
+
+
+    </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>
