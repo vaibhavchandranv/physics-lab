@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>4.2 electrical quantities · physics lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://rsms.me" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <style>
+    :root {
+      --bg: #050508;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --muter: #6b7280;
+      --border: #272a33;
+      --box: #0f1a2e;
+      --box-border: #1e3a5f;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--text);
+      background: #000000;
+    }
+    a { color: inherit; text-decoration: none; }
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, #151821 1px, transparent 1px),
+        linear-gradient(to bottom, #151821 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -2;
+    }
+    .bg-fade {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #050711 0, #000000 55%);
+      box-shadow: inset 0 0 160px #000000;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+    }
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 180px;
+      height: 100vh;
+      border-right: 1px solid var(--border);
+      background: linear-gradient(to bottom, #050711, #050508);
+      overflow-y: auto;
+      padding: 1rem;
+      z-index: 20;
+    }
+    .sidebar-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .sidebar-back {
+      font-size: 0.7rem;
+      color: var(--muter);
+      display: block;
+      margin-bottom: 1.2rem;
+      transition: color 0.15s;
+    }
+    .sidebar-back:hover {
+      color: var(--muted);
+    }
+    .nav-item {
+      padding: 0.5rem 0.8rem;
+      border-left: 2px solid transparent;
+      cursor: pointer;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: lowercase;
+      transition: all 0.15s;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+    .nav-item:hover {
+      color: var(--text);
+      background: rgba(96, 212, 255, 0.08);
+    }
+    .nav-item.active {
+      color: var(--text);
+      border-left-color: #60d4ff;
+      background: rgba(96, 212, 255, 0.08);
+    }
+    .content {
+      grid-column: 2;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .topic-num {
+      font-size: 0.7rem;
+      color: var(--muter);
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .title {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      text-transform: lowercase;
+    }
+    .concept {
+      border: 1px solid var(--box-border);
+      background: var(--box);
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin-bottom: 1.8rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .atom {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 999px;
+      border: 1px solid #60d4ff;
+      background: radial-gradient(circle at 50% 35%, #1a3a4a, #050508);
+      position: relative;
+    }
+    .atom::before,
+    .atom::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(96, 212, 255, 0.5);
+      border-left: transparent;
+      border-bottom: transparent;
+      animation: rot 3s linear infinite;
+    }
+    .atom::after {
+      border-top: transparent;
+      border-right: transparent;
+      animation: rot-rev 3s linear infinite;
+    }
+    .atom-dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #60d4ff;
+      border-radius: 999px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    @keyframes rot { to { transform: rotate(360deg); } }
+    @keyframes rot-rev { to { transform: rotate(-360deg); } }
+    .concept h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #60d4ff;
+      margin-bottom: 0.5rem;
+      text-transform: lowercase;
+    }
+    .concept p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      text-transform: lowercase;
+    }
+    .concept ul {
+      margin: 0.6rem 0 0 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      text-transform: lowercase;
+    }
+    .concept li { margin-bottom: 0.3rem; }
+    .section { margin-bottom: 1.8rem; }
+    .section h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+      text-transform: lowercase;
+    }
+    .section h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      text-transform: lowercase;
+      margin-top: 1rem;
+    }
+    .section p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+      text-transform: lowercase;
+    }
+    .section ul {
+      margin-left: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+      text-transform: lowercase;
+    }
+    .section li { margin-bottom: 0.4rem; }
+    code {
+      font-family: monospace;
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.75em;
+      color: #a1e0ff;
+    }
+    strong { color: var(--text); font-weight: 600; }
+    .section img {
+      max-width: 60%;
+      height: auto;
+      display: block;
+      padding: 2em;
+      margin: 3rem auto;
+      border-radius: 8px;
+      border: 1px solid var(--box-border);
+    }
+
+  </style>
+</head>
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-fade"></div>
+
+  <div class="shell">
+    <div class="sidebar">
+      <a href="index.html" class="sidebar-back">← back</a>
+      <div class="sidebar-title">unit 4</div>
+      <a href="simplemag.html" class="nav-item">4.1 simple phenomena of magnetism</a>
+      <a href="elecquant.html" class="nav-item active">4.2 electrical quantities</a>
+      <a href="circuits.html" class="nav-item">4.3 electric circuits</a>
+      <a href="safety.html" class="nav-item">4.4 electrical safety</a>
+      <a href="emfx.html" class="nav-item">4.5 electromagnetic effects</a>
+    </div>
+
+    <div class="content">
+      <div class="topic-num">4.2</div>
+      <h1 class="title">electrical quantities</h1>
+
+
+      <div class="concept">
+        <div class="atom"><div class="atom-dot"></div></div>
+        <div>
+          <h3>charge</h3>
+          <p>charges can be either positive or negative. like charges (+ & +, - & -) repel, unlike charges (+ & -) attract. charge is measured in coulombs (C).</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="topic-num">4.2</div>
+<h1 class="title">electrical quantities</h1>
+
+<h2>4.2.1 electric charge</h2>
+
+<div class="concept">
+  <div class="atom"><div class="atom-dot"></div></div>
+  <div>
+    <h3>charge</h3>
+    <p>electric charge is a property of matter that causes electric forces. charge can be positive or negative.</p>
+    <ul>
+      <li>unit: coulomb (c)</li>
+      <li>like charges repel, unlike charges attract</li>
+      <li>charge is conserved</li>
+      <li>charge is carried by electrons in metals</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <p><strong>charging by friction:</strong> electrons are transferred from one material to another.</p>
+  <p><strong>electric field:</strong> region in which an electric charge experiences a force.</p>
+  <p><strong>direction of electric field:</strong> direction of force on a positive charge.</p>
+</div>
+
+<h2>4.2.2 electric current</h2>
+
+<div class="concept">
+  <div class="atom"><div class="atom-dot"></div></div>
+  <div>
+    <h3>current</h3>
+    <p>electric current is the rate of flow of electric charge.</p>
+    <ul>
+      <li>symbol: i</li>
+      <li>unit: ampere (a)</li>
+      <li>equation: <code>i = q / t</code></li>
+      <li>conventional current flows from positive to negative</li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <p><strong>direct current (d.c.):</strong> current that flows in one direction only.</p>
+  <p><strong>alternating current (a.c.):</strong> current that changes direction repeatedly.</p>
+</div>
+
+<h2>4.2.3 electromotive force and potential difference</h2>
+
+<div class="concept">
+  <div class="atom"><div class="atom-dot"></div></div>
+  <div>
+    <h3>potential difference (p.d.)</h3>
+    <p>potential difference is the energy transferred per unit charge between two points in a circuit.</p>
+    <ul>
+      <li>symbol: v</li>
+      <li>unit: volt (v)</li>
+      <li>equation: <code>v = w / q</code></li>
+      <li>measured using a voltmeter in parallel</li>
+    </ul>
+  </div>
+</div>
+
+<div class="concept">
+  <div class="atom"><div class="atom-dot"></div></div>
+  <div>
+    <h3>electromotive force (emf)</h3>
+    <p>emf is the energy supplied per unit charge by a source.</p>
+    <ul>
+      <li>symbol: e</li>
+      <li>unit: volt (v)</li>
+      <li>measured across a source when no current flows</li>
+    </ul>
+  </div>
+</div>
+
+<h2>4.2.4 resistance</h2>
+
+<div class="concept">
+  <div class="atom"><div class="atom-dot"></div></div>
+  <div>
+    <h3>resistance</h3>
+    <p>resistance is the opposition to the flow of electric current.</p>
+    <ul>
+      <li>symbol: r</li>
+      <li>unit: ohm (Ω)</li>
+      <li>equation: <code>r = v / i</code></li>
+    </ul>
+  </div>
+</div>
+
+<div class="section">
+  <h3>factors affecting resistance</h3>
+  <ul>
+    <li>length of conductor (longer = greater resistance)</li>
+    <li>cross-sectional area (thicker = lower resistance)</li>
+    <li>material of conductor</li>
+    <li>temperature (for metals, resistance increases with temperature)</li>
+  </ul>
+
+  <h3>ohm’s law</h3>
+  <p>for a conductor at constant temperature, current is directly proportional to potential difference.</p>
+  <p><code>v = ir</code></p>
+</div>
+
+<h2>4.2.5 electrical energy and electrical power</h2>
+
+<div class="concept">
+  <div class="atom"><div class="atom-dot"></div></div>
+  <div>
+    <h3>electrical power</h3>
+    <p>electrical power is the rate of transfer of electrical energy.</p>
+    <ul>
+      <li>symbol: p</li>
+      <li>unit: watt (w)</li>
+      <li>equations: <code>p = vi</code>, <code>p = i²r</code>, <code>p = v² / r</code></li>
+    </ul>
+  </div>
+</div>
+
+<div class="concept">
+  <div class="atom"><div class="atom-dot"></div></div>
+  <div>
+    <h3>electrical energy</h3>
+    <p>electrical energy is the total energy transferred in a circuit.</p>
+    <ul>
+      <li>unit: joule (j)</li>
+      <li>equation: <code>e = pt</code></li>
+      <li>commercial unit: kilowatt-hour (kwh)</li>
+    </ul>
+  </div>
+</div>
+
+
+
+
+
+    </div>
+    </div>
+    </div>
+  </div>
+</body>
+</html>
