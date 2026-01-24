@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>4.2 electrical quantities · physics lab</title>
+  <title>4.3 electric circuits · physics lab</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://rsms.me" />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
@@ -240,6 +240,7 @@
 
   </style>
 </head>
+
 <body>
   <div class="bg-grid"></div>
   <div class="bg-fade"></div>
@@ -249,164 +250,68 @@
       <a href="index.html" class="sidebar-back">← back</a>
       <div class="sidebar-title">unit 4</div>
       <a href="simplemag.html" class="nav-item">4.1 simple phenomena of magnetism</a>
-      <a href="elecquant.html" class="nav-item active">4.2 electrical quantities</a>
-      <a href="circuits.html" class="nav-item">4.3 electric circuits</a>
+      <a href="elecquant.html" class="nav-item">4.2 electrical quantities</a>
+      <a href="circuits.html" class="nav-item active">4.3 electric circuits</a>
       <a href="safety.html" class="nav-item">4.4 electrical safety</a>
       <a href="emfx.html" class="nav-item">4.5 electromagnetic effects</a>
     </div>
 
     <div class="content">
-      <div class="topic-num">4.2</div>
-      <h1 class="title">electrical quantities</h1>
+      <div class="topic-num">4.3</div>
+      <h1 class="title">electric circuits</h1>
 
-
-      <div class="concept">
-        <div class="atom"><div class="atom-dot"></div></div>
-        <div>
-          <h3>charge</h3>
-          <p>charges can be either positive or negative. like charges (+ & +, - & -) repel, unlike charges (+ & -) attract. charge is measured in coulombs (C).</p>
-        </div>
+      <div class="section">
+        <h2>4.3.1 circuit diagrams and circuit components</h2>
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG53iZCOocoTxLqE4-iOVO2Y6DnBMGmAqGJg&s">
       </div>
 
       <div class="section">
-        <div class="topic-num">4.2</div>
-<h1 class="title">electrical quantities</h1>
+        <h2>4.3.2 series and parallel circuits</h2>
 
-<h2>4.2.1 electric charge</h2>
+        <h3>series circuits</h3>
+        <p>components are connected in a single loop.</p>
+        <ul>
+          <li>current is the same at all points</li>
+          <li>potential difference is shared</li>
+          <li>total resistance increases</li>
+        </ul>
+        <p><code>r<sub>total</sub> = r<sub>1</sub> + r<sub>2</sub></code></p>
 
-<div class="concept">
-  <div class="atom"><div class="atom-dot"></div></div>
-  <div>
-    <h3>charge</h3>
-    <p>electric charge is a property of matter that causes electric forces. charge can be positive or negative.</p>
-    <ul>
-      <li>unit: coulomb (c)</li>
-      <li>like charges repel, unlike charges attract</li>
-      <li>charge is conserved</li>
-      <li>charge is carried by electrons in metals</li>
-    </ul>
-  </div>
-</div>
+        <h3>parallel circuits</h3>
+        <p>components are connected on separate branches.</p>
+        <ul>
+          <li>potential difference is the same across each branch</li>
+          <li>current splits between branches</li>
+          <li>total current is the sum of branch currents</li>
+        </ul>
+        <p><code>i<sub>total</sub> = i<sub>1</sub> + i<sub>2</sub></code></p>
 
-<div class="section">
-  <p><strong>charging by friction:</strong> electrons are transferred from one material to another.</p>
-  <p><strong>electric field:</strong> region in which an electric charge experiences a force.</p>
-  <p><strong>direction of electric field:</strong> direction of force on a positive charge.</p>
-</div>
+        <p><strong>advantages of parallel circuits:</strong></p>
+        <ul>
+          <li>full p.d. across each component</li>
+          <li>independent operation</li>
+        </ul>
+      </div>
 
-<h2>4.2.2 electric current</h2>
+      <div class="section">
+        <h2>4.3.3 action and use of circuit components</h2>
 
-<div class="concept">
-  <div class="atom"><div class="atom-dot"></div></div>
-  <div>
-    <h3>current</h3>
-    <p>electric current is the rate of flow of electric charge.</p>
-    <ul>
-      <li>symbol: i</li>
-      <li>unit: ampere (a)</li>
-      <li>equation: <code>i = q / t</code></li>
-      <li>conventional current flows from positive to negative</li>
-    </ul>
-  </div>
-</div>
+        <h3>resistors in parallel</h3>
+        <p>total resistance decreases when resistors are connected in parallel.</p>
+        <p><code>1 / r<sub>total</sub> = 1 / r<sub>1</sub> + 1 / r<sub>2</sub></code></p>
 
-<div class="section">
-  <p><strong>direct current (d.c.):</strong> current that flows in one direction only.</p>
-  <p><strong>alternating current (a.c.):</strong> current that changes direction repeatedly.</p>
-</div>
+        <h3>potential divider</h3>
+        <p>two resistors in series can be used to divide potential difference.</p>
+        <p><code>v<sub>1</sub> / v<sub>2</sub> = r<sub>1</sub> / r<sub>2</sub></code></p>
 
-<h2>4.2.3 electromotive force and potential difference</h2>
-
-<div class="concept">
-  <div class="atom"><div class="atom-dot"></div></div>
-  <div>
-    <h3>potential difference (p.d.)</h3>
-    <p>potential difference is the energy transferred per unit charge between two points in a circuit.</p>
-    <ul>
-      <li>symbol: v</li>
-      <li>unit: volt (v)</li>
-      <li>equation: <code>v = w / q</code></li>
-      <li>measured using a voltmeter in parallel</li>
-    </ul>
-  </div>
-</div>
-
-<div class="concept">
-  <div class="atom"><div class="atom-dot"></div></div>
-  <div>
-    <h3>electromotive force (emf)</h3>
-    <p>emf is the energy supplied per unit charge by a source.</p>
-    <ul>
-      <li>symbol: e</li>
-      <li>unit: volt (v)</li>
-      <li>measured across a source when no current flows</li>
-    </ul>
-  </div>
-</div>
-
-<h2>4.2.4 resistance</h2>
-
-<div class="concept">
-  <div class="atom"><div class="atom-dot"></div></div>
-  <div>
-    <h3>resistance</h3>
-    <p>resistance is the opposition to the flow of electric current.</p>
-    <ul>
-      <li>symbol: r</li>
-      <li>unit: ohm (Ω)</li>
-      <li>equation: <code>r = v / i</code></li>
-    </ul>
-  </div>
-</div>
-
-<div class="section">
-  <h3>factors affecting resistance</h3>
-  <ul>
-    <li>length of conductor (longer = greater resistance)</li>
-    <li>cross-sectional area (thicker = lower resistance)</li>
-    <li>material of conductor</li>
-    <li>temperature (for metals, resistance increases with temperature)</li>
-  </ul>
-
-  <h3>ohm’s law</h3>
-  <p>for a conductor at constant temperature, current is directly proportional to potential difference.</p>
-  <p><code>v = ir</code></p>
-</div>
-
-<h2>4.2.5 electrical energy and electrical power</h2>
-
-<div class="concept">
-  <div class="atom"><div class="atom-dot"></div></div>
-  <div>
-    <h3>electrical power</h3>
-    <p>electrical power is the rate of transfer of electrical energy.</p>
-    <ul>
-      <li>symbol: p</li>
-      <li>unit: watt (w)</li>
-      <li>equations: <code>p = vi</code>, <code>p = i²r</code>, <code>p = v² / r</code></li>
-    </ul>
-  </div>
-</div>
-
-<div class="concept">
-  <div class="atom"><div class="atom-dot"></div></div>
-  <div>
-    <h3>electrical energy</h3>
-    <p>electrical energy is the total energy transferred in a circuit.</p>
-    <ul>
-      <li>unit: joule (j)</li>
-      <li>equation: <code>e = pt</code></li>
-      <li>commercial unit: kilowatt-hour (kwh)</li>
-    </ul>
-  </div>
-</div>
-
-
-
-
-
-    </div>
-    </div>
+        <h3>diodes and sensors</h3>
+        <ul>
+          <li>diodes allow current in one direction only</li>
+          <li>leds emit light when current flows forward</li>
+          <li>thermistors respond to temperature changes</li>
+          <li>ldrs respond to light intensity</li>
+        </ul>
+      </div>
     </div>
   </div>
 </body>
