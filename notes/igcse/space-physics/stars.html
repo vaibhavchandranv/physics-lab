@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>6.2 stars and the universe · physics lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://rsms.me" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <style>
+    :root {
+      --bg: #050508;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --muter: #6b7280;
+      --border: #272a33;
+      --box: #0f1a2e;
+      --box-border: #1e3a5f;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--text);
+      background: #000000;
+    }
+    a { color: inherit; text-decoration: none; }
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, #151821 1px, transparent 1px),
+        linear-gradient(to bottom, #151821 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -2;
+    }
+    .bg-fade {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #050711 0, #000000 55%);
+      box-shadow: inset 0 0 160px #000000;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+    }
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 180px;
+      height: 100vh;
+      border-right: 1px solid var(--border);
+      background: linear-gradient(to bottom, #050711, #050508);
+      overflow-y: auto;
+      padding: 1rem;
+      z-index: 20;
+    }
+    .sidebar-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .sidebar-back {
+      font-size: 0.7rem;
+      color: var(--muter);
+      display: block;
+      margin-bottom: 1.2rem;
+      transition: color 0.15s;
+    }
+    .sidebar-back:hover {
+      color: var(--muted);
+    }
+    .nav-item {
+      padding: 0.5rem 0.8rem;
+      border-left: 2px solid transparent;
+      cursor: pointer;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: lowercase;
+      transition: all 0.15s;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+    .nav-item:hover {
+      color: var(--text);
+      background: rgba(96, 212, 255, 0.08);
+    }
+    .nav-item.active {
+      color: var(--text);
+      border-left-color: #60d4ff;
+      background: rgba(96, 212, 255, 0.08);
+    }
+    .content {
+      grid-column: 2;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .topic-num {
+      font-size: 0.7rem;
+      color: var(--muter);
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .title {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      text-transform: lowercase;
+    }
+    .section { margin-bottom: 1.8rem; }
+    .section h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+      text-transform: lowercase;
+    }
+    .section h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      text-transform: lowercase;
+      margin-top: 1rem;
+    }
+    .section ul {
+      margin-left: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+      text-transform: lowercase;
+    }
+    .section li { margin-bottom: 0.4rem; }
+    code {
+      font-family: monospace;
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.75em;
+      color: #a1e0ff;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-fade"></div>
+
+  <div class="shell">
+    <div class="sidebar">
+      <a href="index.html" class="sidebar-back">← back</a>
+      <div class="sidebar-title">unit 6</div>
+      <a href="earthsolar.html" class="nav-item">6.1 earth, the moon, and the solar system</a>
+      <a href="stars.html" class="nav-item active">6.2 stars and the universe</a>
+    </div>
+
+    <div class="content">
+      <div class="topic-num">6.2</div>
+      <h1 class="title">stars and the universe</h1>
+
+      <div class="section">
+        <h2>6.2.1 the sun</h2>
+        <ul>
+          <li>the sun is a medium-mass star</li>
+          <li>it is made mainly of hydrogen and helium</li>
+          <li>energy is released by nuclear fusion of hydrogen into helium</li>
+          <li>energy is emitted as visible light, infrared, and ultraviolet</li>
+          <li>the sun contains most of the mass of the solar system</li>
+          <li>distances in space are measured in light-years</li>
+          <li>a light-year is the distance travelled by light in one year</li>
+          <li><code>1 light year ≈ 9.5 × 10<sup>15</sup> m</code></li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>6.2.2 stars</h2>
+        <ul>
+          <li>galaxies are made of billions of stars</li>
+          <li>the sun is a star in the milky way galaxy</li>
+          <li>the milky way has a diameter of about 100,000 light years</li>
+          <li>the sun is the closest star to earth</li>
+        </ul>
+
+        <h3>life cycle of stars</h3>
+        <ul>
+          <li>stars form from clouds of gas and dust containing hydrogen</li>
+          <li>gravity causes the cloud to collapse forming a protostar</li>
+          <li>temperature increases until nuclear fusion begins</li>
+          <li>a stable star forms when outward pressure balances gravity</li>
+          <li>all stars eventually run out of hydrogen fuel</li>
+          <li>average stars expand into red giants</li>
+          <li>massive stars expand into red supergiants</li>
+          <li>red giants form planetary nebulae leaving white dwarfs</li>
+          <li>red supergiants explode as supernovae</li>
+          <li>supernovae leave neutron stars or black holes</li>
+          <li>nebulae can form new stars</li>
+        </ul>
+      </div>
+
+      <div class="section">
+        <h2>6.2.3 the universe</h2>
+        <ul>
+          <li>the universe is expanding</li>
+          <li>expansion is observed using redshift</li>
+          <li>redshift is an increase in wavelength of light from receding galaxies</li>
+          <li>speed of galaxies can be found from change in wavelength</li>
+          <li>brightness of supernovae can be used to estimate distances</li>
+          <li>the hubble constant describes the rate of expansion</li>
+          <li><code>h<sub>0</sub> = v / d</code></li>
+          <li><code>h<sub>0</sub> ≈ 2.2 × 10<sup>-18</sup> s<sup>-1</sup></code></li>
+          <li><code>1 / h<sub>0</sub></code> estimates the age of the universe</li>
+          <li>cosmic microwave background radiation exists throughout space</li>
+          <li>cmbr formed shortly after the universe began</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
