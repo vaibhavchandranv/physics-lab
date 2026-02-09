@@ -157,13 +157,14 @@
     /* options grid */
     .options {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 1.2rem;
       width: 100%;
-      max-width: 620px;
+      max-width: 820px;
       animation: fadeInDown 1s cubic-bezier(0, 0.55, 0.45, 1) forwards;
       animation-delay: 0.24s;
     }
+
 
     .option {
       padding: 1.8rem 1.6rem;
@@ -274,6 +275,19 @@
     .option:hover .code {
       background: rgba(31, 41, 55, 0.9);
     }
+
+    @media (max-width: 900px) {
+      .options {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 560px) {
+      .options {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -317,6 +331,19 @@
           <div class="option-codes">
             <span class="code">cambridge 9702</span>
             <span class="code">edexcel XPH11/YPH11</span>
+          </div>
+        </a>
+
+        <a href="#alevel.html" class="option">
+          <div class="option-icon">📖</div>
+          <div class="option-title">ib</div>
+          <div class="option-desc">
+            ib physics with standard and higher level content, plus the optional topics.
+          </div>
+          <div class="option-codes">
+            <span class="code">physics SL</span>
+            <span class="code">physics HL</span>
+            <span class="code">tok</span>
           </div>
         </a>
       </div>
