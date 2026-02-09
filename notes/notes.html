@@ -288,6 +288,43 @@
       }
     }
 
+    /* disabled cards */
+    .option.disabled {
+      opacity: 0.45;
+      filter: grayscale(100%);
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* kill hover effects completely */
+    .option.disabled::before {
+      display: none;
+    }
+
+    .option.disabled:hover {
+      transform: none;
+      box-shadow: none;
+      border-color: var(--border);
+    }
+
+    /* coming soon badge */
+    .option.disabled::after {
+      content: "coming soon";
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      text-transform: lowercase;
+      padding: 0.3rem 0.55rem;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--muted);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      z-index: 2;
+    }
+
+
   </style>
 </head>
 <body>
@@ -322,7 +359,7 @@
           </div>
         </a>
 
-        <a href="#alevel.html" class="option">
+        <a href="#alevel.html" class="option disabled">
           <div class="option-icon">📚</div>
           <div class="option-title">a level</div>
           <div class="option-desc">
@@ -334,7 +371,7 @@
           </div>
         </a>
 
-        <a href="#alevel.html" class="option">
+        <a href="#alevel.html" class="option disabled">
           <div class="option-icon">📖</div>
           <div class="option-title">ib</div>
           <div class="option-desc">
