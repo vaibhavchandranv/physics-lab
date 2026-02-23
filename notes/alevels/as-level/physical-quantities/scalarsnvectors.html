@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>1.2 si units · physics lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://rsms.me" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <style>
+    :root {
+      --bg: #050508;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --muter: #6b7280;
+      --border: #272a33;
+      --box: #0f1a2e;
+      --box-border: #1e3a5f;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body { min-height: 100%; }
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--text);
+      background: #000000;
+    }
+    a { color: inherit; text-decoration: none; }
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, #151821 1px, transparent 1px),
+        linear-gradient(to bottom, #151821 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -2;
+    }
+    .bg-fade {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #050711 0, #000000 55%);
+      box-shadow: inset 0 0 160px #000000;
+      pointer-events: none;
+      z-index: -1;
+    }
+    .shell {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 180px 1fr;
+    }
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      width: 180px;
+      height: 100vh;
+      border-right: 1px solid var(--border);
+      background: linear-gradient(to bottom, #050711, #050508);
+      overflow-y: auto;
+      padding: 1rem;
+      z-index: 20;
+    }
+    .sidebar-title {
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .sidebar-back {
+      font-size: 0.7rem;
+      color: var(--muter);
+      display: block;
+      margin-bottom: 1.2rem;
+      transition: color 0.15s;
+    }
+    .sidebar-back:hover {
+      color: var(--muted);
+    }
+    .nav-item {
+      padding: 0.5rem 0.8rem;
+      border-left: 2px solid transparent;
+      cursor: pointer;
+      font-size: 0.7rem;
+      color: var(--muted);
+      text-transform: lowercase;
+      transition: all 0.15s;
+      margin-bottom: 0.3rem;
+      display: block;
+    }
+    .nav-item:hover {
+      color: var(--text);
+      background: rgba(96, 212, 255, 0.08);
+    }
+    .nav-item.active {
+      color: var(--text);
+      border-left-color: #60d4ff;
+      background: rgba(96, 212, 255, 0.08);
+    }
+    .content {
+      grid-column: 2;
+      overflow-y: auto;
+      padding: 2rem 1.5rem;
+      max-width: 800px;
+      margin: 0 auto;
+      width: 100%;
+    }
+    .topic-num {
+      font-size: 0.7rem;
+      color: var(--muter);
+      text-transform: lowercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 0.5rem;
+    }
+    .title {
+      font-size: 1.8rem;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      text-transform: lowercase;
+    }
+    .concept {
+      border: 1px solid var(--box-border);
+      background: var(--box);
+      border-radius: 10px;
+      padding: 1.2rem;
+      margin-bottom: 1.8rem;
+      display: flex;
+      gap: 1rem;
+    }
+    .atom {
+      width: 32px;
+      height: 32px;
+      flex-shrink: 0;
+      border-radius: 999px;
+      border: 1px solid #60d4ff;
+      background: radial-gradient(circle at 50% 35%, #1a3a4a, #050508);
+      position: relative;
+    }
+    .atom::before,
+    .atom::after {
+      content: "";
+      position: absolute;
+      inset: 6px;
+      border-radius: 50%;
+      border: 0.5px solid rgba(96, 212, 255, 0.5);
+      border-left: transparent;
+      border-bottom: transparent;
+      animation: rot 3s linear infinite;
+    }
+    .atom::after {
+      border-top: transparent;
+      border-right: transparent;
+      animation: rot-rev 3s linear infinite;
+    }
+    .atom-dot {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #60d4ff;
+      border-radius: 999px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+    }
+    @keyframes rot { to { transform: rotate(360deg); } }
+    @keyframes rot-rev { to { transform: rotate(-360deg); } }
+    .concept h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #60d4ff;
+      margin-bottom: 0.5rem;
+      text-transform: lowercase;
+    }
+    .concept p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.6;
+      text-transform: lowercase;
+    }
+    .concept ul {
+      margin: 0.6rem 0 0 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.6;
+      text-transform: lowercase;
+    }
+    .concept li { margin-bottom: 0.3rem; }
+    .section { margin-bottom: 1.8rem; }
+    .section h2 {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.7rem;
+      text-transform: lowercase;
+    }
+    .section h3 {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      text-transform: lowercase;
+      margin-top: 1rem;
+    }
+    .section p {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 0.6rem;
+    }
+    .section ul {
+      margin-left: 1.2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.7;
+      text-transform: lowercase;
+    }
+    .section li { margin-bottom: 0.4rem; }
+    code {
+      font-family: monospace;
+      background: rgba(15, 23, 42, 0.9);
+      padding: 0.15rem 0.4rem;
+      border-radius: 3px;
+      font-size: 0.75em;
+      color: #a1e0ff;
+    }
+    strong { color: var(--text); font-weight: 600; }
+    .section img {
+      max-width: 60%;
+      height: auto;
+      display: block;
+      padding: 2em;
+      margin: 3rem auto;
+      border-radius: 8px;
+      border: 1px solid var(--box-border);
+    }
+
+    /* tables */
+    table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0 1.6rem;
+    font-size: 0.78rem;
+    color: var(--text);
+    }
+
+    thead {
+    border-bottom: 1px solid var(--border);
+    }
+
+    thead th {
+    text-align: left;
+    font-weight: 500;
+    color: var(--muted);
+    padding: 0.6rem 0.4rem;
+    text-transform: lowercase;
+    letter-spacing: 0.04em;
+    }
+
+    tbody tr {
+    transition: background 0.12s ease;
+    }
+
+    tbody tr:hover {
+    background: rgba(96, 212, 255, 0.04);
+    }
+
+    tbody td {
+    padding: 0.5rem 0.4rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    }
+
+    /* narrow number column */
+    table td:first-child,
+    table th:first-child {
+    width: 48px;
+    color: var(--muter);
+    }
+
+    /* inline code inside tables */
+    table code {
+    font-size: 0.72rem;
+    padding: 0.12rem 0.35rem;
+    background: rgba(15, 23, 42, 0.85);
+    border: 1px solid var(--box-border);
+    }
+
+    /* optional: subtle rounding illusion */
+    table tbody tr:last-child td {
+    border-bottom: none;
+    }
+
+    /* vertical column dividers */
+    thead th:not(:last-child),
+    tbody td:not(:last-child) {
+    border-right: 1px solid #222222;
+    }
+
+  </style>
+</head>
+
+<body>
+  <div class="bg-grid"></div>
+  <div class="bg-fade"></div>
+
+  <div class="shell">
+    <div class="sidebar">
+      <a href="index.html" class="sidebar-back">← back</a>
+      <div class="sidebar-title">unit 1</div>
+      <a href="physical-quants.html" class="nav-item">1.1 physical quantities</a>
+      <a href="si-units.html" class="nav-item">1.2 si units</a>
+      <a href="uncertainties.html" class="nav-item">1.3 errors and uncertainties</a>
+      <a href="scalarsnvectors.html" class="nav-item active">1.4 scalars and vectors</a>
+    </div>
+
+<div class="content">
+  <div class="topic-num">1.4</div>
+  <h1 class="title">scalars and vectors</h1>
+
+  <div class="section">
+    <h2>1.4.1 scalar and vector quantities</h2>
+
+    <p>
+      physical quantities can be classified as either scalars or vectors.
+    </p>
+
+    <h3>scalar quantities</h3>
+    <p>
+      scalar quantities have magnitude only.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>quantity</th>
+          <th>symbol</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>mass</td><td><code>m</code></td></tr>
+        <tr><td>time</td><td><code>t</code></td></tr>
+        <tr><td>energy</td><td><code>E</code></td></tr>
+        <tr><td>power</td><td><code>P</code></td></tr>
+        <tr><td>speed</td><td><code>v</code></td></tr>
+      </tbody>
+    </table>
+
+    <h3>vector quantities</h3>
+    <p>
+      vector quantities have both magnitude and direction.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>quantity</th>
+          <th>symbol</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>displacement</td><td><code>s</code></td></tr>
+        <tr><td>velocity</td><td><code>v</code></td></tr>
+        <tr><td>acceleration</td><td><code>a</code></td></tr>
+        <tr><td>force</td><td><code>F</code></td></tr>
+        <tr><td>momentum</td><td><code>p</code></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>1.4.2 addition and subtraction of coplanar vectors</h2>
+
+    <p>
+      coplanar vectors lie in the same plane and can be added graphically.
+    </p>
+
+    <h3>addition of coplanar vectors</h3>
+    <ul>
+      <li>vectors are added using the head-to-tail method</li>
+      <li>the resultant vector is drawn from the tail of the first vector to the head of the last vector</li>
+    </ul>
+
+    <p>
+      if two vectors act in the same direction, their magnitudes add directly.
+    </p>
+    
+    <img src="https://pub-cc5065d6ea7e4e2fa18c07d37e6641c3.r2.dev/a-levels/physics-9702/01/physics-9702-1-03.webp">
+
+    <p>
+      example:
+      <code>20 N</code> + <code>30 N</code> in the same direction gives a resultant of <code>50 N</code>
+    </p>
+
+    <h3>subtraction of coplanar vectors</h3>
+    <ul>
+      <li>subtraction is equivalent to adding a vector in the opposite direction</li>
+      <li>the direction of the resultant depends on the larger magnitude</li>
+    </ul>
+
+    <img src="https://pub-cc5065d6ea7e4e2fa18c07d37e6641c3.r2.dev/a-levels/physics-9702/01/physics-9702-1-04.webp">
+
+    <p>
+      example:
+      <code>30 N</code> − <code>20 N</code> gives a resultant of <code>10 N</code> in the direction of the <code>30 N</code> force
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>1.4.3 addition of non-coplanar vectors</h2>
+
+    <p>
+      when vectors are not in the same plane, they cannot be added using simple collinear methods.
+    </p>
+
+    <p>
+      vectors are added using the head-to-tail method in two dimensions.
+    </p>
+
+    <ul>
+      <li>each vector is drawn to scale</li>
+      <li>the angle between vectors must be included accurately</li>
+      <li>the resultant vector is labelled <code>R</code></li>
+    </ul>
+
+    <img src="https://pub-cc5065d6ea7e4e2fa18c07d37e6641c3.r2.dev/a-levels/physics-9702/01/physics-9702-1-05.webp">
+
+    <p>
+      the magnitude and direction of <code>R</code> are measured from the diagram.
+    </p>
+  </div>
+
+  <div class="section">
+    <h2>1.4.4 resolving vectors</h2>
+
+    <p>
+      resolving a vector means splitting it into two perpendicular components.
+    </p>
+
+    <p>
+      components are usually resolved horizontally and vertically.
+    </p>
+
+    <p>
+      for a vector <code>F</code> at an angle <code>θ</code> to the horizontal:
+    </p>
+
+    <img src="https://pub-cc5065d6ea7e4e2fa18c07d37e6641c3.r2.dev/a-levels/physics-9702/01/physics-9702-1-06.webp">
+
+    <ul>
+      <li>horizontal component: <code>Fₓ = F cos θ</code></li>
+      <li>vertical component: <code>Fᵧ = F sin θ</code></li>
+    </ul>
+
+    <p>
+      the original vector can be found by combining its perpendicular components.
+    </p>
+
+    <p>
+      resolving vectors simplifies analysis of motion and forces in two dimensions.
+    </p>
+  </div>
+</div>
+
+  </div>
+</body>
+</html>
