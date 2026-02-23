@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>select notes · physics lab</title>
+  <title>igcse notes · physics lab</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <!-- Inter font -->
@@ -78,7 +78,7 @@
     }
 
     .container {
-      max-width: 820px;
+      max-width: 1000px;
       width: 100%;
       text-align: center;
       display: flex;
@@ -147,40 +147,37 @@
     .subtitle {
       font-size: 0.96rem;
       color: var(--muted);
-      max-width: 36rem;
+      max-width: 40rem;
       line-height: 1.7;
       font-weight: 300;
       text-transform: lowercase;
     }
 
-    /* options grid */
-    .options {
+    /* units grid */
+    .units {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 1.2rem;
       width: 100%;
-      max-width: 820px;
       animation: fadeInDown 1s cubic-bezier(0, 0.55, 0.45, 1) forwards;
       animation-delay: 0.24s;
     }
 
-
-    .option {
+    .unit {
       padding: 1.8rem 1.6rem;
       border-radius: 16px;
       border: 1px solid var(--border);
       background: radial-gradient(circle at top left, #0f1219, #050508);
-      text-align: center;
+      text-align: left;
       cursor: pointer;
       transition: transform 0.14s ease, box-shadow 0.14s ease, border-color 0.14s ease;
       display: flex;
       flex-direction: column;
       gap: 0.8rem;
-      align-items: center;
       position: relative;
     }
 
-    .option::before {
+    .unit::before {
       content: "";
       position: absolute;
       inset: 0;
@@ -206,108 +203,67 @@
       transition: opacity 0.14s ease;
     }
 
-    .option:hover::before {
+    .unit:hover::before {
       opacity: 1;
       animation: rainbowBorder 4s ease infinite;
     }
 
-    .option:hover {
+    .unit:hover {
       transform: translateY(-1px);
       box-shadow: 0 20px 60px rgba(0, 0, 0, 0.9);
       border-color: transparent;
     }
 
-    .option-icon {
-      font-size: 1.8rem;
-      opacity: 0.8;
+    .unit-number {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      color: var(--muter);
       position: relative;
       z-index: 1;
     }
 
-    .option-title {
+    .unit-title {
       font-size: 1.1rem;
       font-weight: 400;
       color: var(--text);
       text-transform: lowercase;
       position: relative;
       z-index: 1;
+      line-height: 1.3;
     }
 
-    .option-desc {
+    .unit-desc {
       font-size: 0.78rem;
-      color: var(--muter);
+      color: var(--muted);
       line-height: 1.6;
       text-transform: lowercase;
       position: relative;
       z-index: 1;
     }
 
-    .option-codes {
-      font-size: 0.72rem;
-      color: var(--muted);
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-      margin-top: 0.4rem;
-      position: relative;
-      z-index: 1;
-    }
-
-    .code {
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      background: rgba(31, 41, 55, 0.6);
-      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
-        Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-      font-size: 0.7rem;
-      letter-spacing: 0.08em;
-    }
-
-    .option:hover .option-title {
-      color: var(--text);
-    }
-
-    .option:hover .option-desc {
+    .unit:hover .unit-desc {
       color: var(--muted);
     }
 
-    .option:hover .code {
-      background: rgba(31, 41, 55, 0.9);
-    }
-
-    @media (max-width: 900px) {
-      .options {
-        grid-template-columns: repeat(2, 1fr);
-      }
-    }
-
-    @media (max-width: 560px) {
-      .options {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    /* disabled cards */
-    .option.disabled {
+    .unit.disabled {
       opacity: 0.45;
       filter: grayscale(100%);
       cursor: not-allowed;
       pointer-events: none;
     }
 
-    /* kill hover effects completely */
-    .option.disabled::before {
+    .unit.disabled::before {
       display: none;
     }
 
-    .option.disabled:hover {
+    .unit.disabled:hover {
       transform: none;
       box-shadow: none;
       border-color: var(--border);
     }
 
-    /* coming soon badge */
-    .option.disabled::after {
+    .unit.disabled::after {
       content: "coming soon";
       position: absolute;
       top: 14px;
@@ -322,8 +278,6 @@
       border: 1px solid rgba(255, 255, 255, 0.12);
       z-index: 2;
     }
-
-
   </style>
 </head>
 <body>
@@ -334,54 +288,105 @@
   <div class="shell">
     <div class="container">
       <div class="header">
-        <a href="/physics-lab/index.html" class="back-link">← back</a>
+        <a href="/physics-lab/notes/alevels/alevels.html" class="back-link">← back</a>
         <h1 class="title">
-          select your notes.
-        </h1>
+          igcse physics.
+        </h1> 
         <p class="subtitle">
-          choose between igcse, a level, and ib physics notes, with more qualifications coming soon.
+          eleven units aligned with the latest cambridge igcse syllabus.
+          pick a unit to begin.
         </p>
       </div>
 
-      <div class="options">
-        <a href="igcse/igcse.html" class="option">
-          <div class="option-icon">📋</div>
-          <div class="option-title">igcse</div>
-          <div class="option-desc">
-            igcse 9-1 and igcse (normal), plus o-level and edexcel codes.
-          </div>
-          <div class="option-codes">
-            <span class="code">cambridge 0625/0972</span>
-            <span class="code">edexcel 4WPH1</span>
-            <span class="code">o-level 5054</span>
-          </div>
-        </a>
+      <div class="units">
+  <a href="physical-quantities/index.html" class="unit">
+    <div class="unit-number">unit 1</div>
+    <div class="unit-title">physical quantities and measurement</div>
+    <div class="unit-desc">
+      physical quantities and si units. scalars and vectors. measurement techniques. uncertainties, accuracy and precision.
+    </div>
+  </a>
 
-        <a href="alevels/alevels.html" class="option">
-          <div class="option-icon">📚</div>
-          <div class="option-title">a level</div>
-          <div class="option-desc">
-            a level physics with cambridge and edexcel qualifications.
-          </div>
-          <div class="option-codes">
-            <span class="code">cambridge 9702</span>
-            <span class="code">edexcel XPH11/YPH11</span>
-          </div>
-        </a>
+  <a href="kinematics/index.html" class="unit disabled">
+    <div class="unit-number">unit 2</div>
+    <div class="unit-title">kinematics</div>
+    <div class="unit-desc">
+      displacement, velocity and acceleration. equations of motion. motion graphs. projectile motion.
+    </div>
+  </a>
 
-        <a href="#alevel.html" class="option disabled">
-          <div class="option-icon">📖</div>
-          <div class="option-title">ib</div>
-          <div class="option-desc">
-            ib physics with standard and higher level content, plus the optional topics.
-          </div>
-          <div class="option-codes">
-            <span class="code">physics SL</span>
-            <span class="code">physics HL</span>
-            <span class="code">tok</span>
-          </div>
-        </a>
-      </div>
+  <a href="dynamics/index.html" class="unit disabled">
+    <div class="unit-number">unit 3</div>
+    <div class="unit-title">dynamics</div>
+    <div class="unit-desc">
+      newton’s laws of motion. forces and free-body diagrams. momentum and impulse. conservation of momentum.
+    </div>
+  </a>
+
+  <a href="forces-density-and-pressure/index.html" class="unit disabled">
+    <div class="unit-number">unit 4</div>
+    <div class="unit-title">forces, density and pressure</div>
+    <div class="unit-desc">
+      mass, weight and density. upthrust. pressure in solids, liquids and gases. equilibrium of forces.
+    </div>
+  </a>
+
+  <a href="work-energy-and-power/index.html" class="unit disabled">
+    <div class="unit-number">unit 5</div>
+    <div class="unit-title">work, energy and power</div>
+    <div class="unit-desc">
+      work done and energy transfer. kinetic and potential energy. power. efficiency and conservation of energy.
+    </div>
+  </a>
+
+  <a href="deformation-of-solids/index.html" class="unit disabled">
+    <div class="unit-number">unit 6</div>
+    <div class="unit-title">deformation of solids</div>
+    <div class="unit-desc">
+      stress, strain and hooke’s law. elastic and plastic behaviour. young modulus. elastic energy.
+    </div>
+  </a>
+
+  <a href="waves/index.html" class="unit disabled">
+    <div class="unit-number">unit 7</div>
+    <div class="unit-title">waves</div>
+    <div class="unit-desc">
+      wave properties and equations. transverse and longitudinal waves. reflection, refraction and diffraction.
+    </div>
+  </a>
+
+  <a href="superposition/index.html" class="unit disabled">
+    <div class="unit-number">unit 8</div>
+    <div class="unit-title">superposition</div>
+    <div class="unit-desc">
+      stationary waves. interference. diffraction patterns. path difference and phase difference.
+    </div>
+  </a>
+
+  <a href="electricity/index.html" class="unit disabled">
+    <div class="unit-number">unit 9</div>
+    <div class="unit-title">electricity</div>
+    <div class="unit-desc">
+      electric charge and current. potential difference. resistance. current-voltage characteristics.
+    </div>
+  </a>
+
+  <a href="dc-circuits/index.html" class="unit disabled">
+    <div class="unit-number">unit 10</div>
+    <div class="unit-title">d.c. circuits</div>
+    <div class="unit-desc">
+      series and parallel circuits. emf and internal resistance. potential dividers. electrical power.
+    </div>
+  </a>
+
+  <a href="particle-physics/index.html" class="unit disabled">
+    <div class="unit-number">unit 11</div>
+    <div class="unit-title">particle physics</div>
+    <div class="unit-desc">
+      atomic structure. fundamental particles. antiparticles. particle interactions and conservation laws.
+    </div>
+  </a>
+</div>
     </div>
   </div>
 </body>
