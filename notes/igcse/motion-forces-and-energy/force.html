@@ -7,7 +7,11 @@
   <link rel="preconnect" href="https://rsms.me" />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
   <link rel="stylesheet" href="../../styles.css" />
+
+  <script src="https://vaibhavchandranv.github.io/physics-lab/mathjax.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+
 <body>
   <div class="bg-grid"></div>
   <div class="bg-fade"></div>
@@ -32,113 +36,120 @@
 
       <div class="section">
         <h2>1.5.1 | effects of forces</h2>
+
         <h3>changes in size and shape</h3>
-        <p>forces can cause compression, extension, deformation, or permanent changes to objects.</p>
+        <p>
+          forces can cause compression, extension, deformation, or permanent changes.
+        </p>
+
         <h3>load–extension graphs</h3>
-        <p>attach object vertically, add equal load increments, measure length changes, plot load vs extension. linear region obeys hooke's law; beyond the limit of proportionality, the relationship becomes non-linear.</p>
+        <p>
+          linear region obeys hooke's law, then non-linear beyond limit of proportionality.
+        </p>
       </div>
 
       <div class="concept">
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
           <h3>resultant force</h3>
-          <p>vector sum of multiple forces along the same line. f_resultant = f₁ + f₂ + f₃. when zero, object is in equilibrium.</p>
+          <p>
+            vector sum of forces along same line. equilibrium when:
+            <span class="formula">$F_{resultant} = 0$</span>
+          </p>
         </div>
       </div>
 
       <div class="concept">
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
-          <h3>newton's first law</strong></h3>
-          <p>object remains at rest or moves at constant velocity unless acted on by a resultant force.</p>
+          <h3>newton's first law</h3>
+          <p>
+            object stays at rest or constant velocity unless acted on by a resultant force.
+          </p>
         </div>
       </div>
 
       <div class="section">
         <h3>changes in velocity</h3>
-        <p>resultant force changes velocity by:</p>
         <ul>
           <li>changing direction (perpendicular force)</li>
           <li>changing speed (parallel force)</li>
         </ul>
 
         <h3>spring constant</h3>
-        <p><code>k = f/x</code> (unit N/m). hooke's law: <code>f = kx</code> within the limit of proportionality, where material stops obeying hooke's law. the limit of proportionality is shown by the point where the load-extension graph stops being a line, and curves away.</p>
+        <ul>
+          <li class="formula">$k = \frac{F}{x}$ (N/m)</li>
+          <li class="formula">$F = kx$ (hooke's law)</li>
+        </ul>
+        <p>
+          limit of proportionality is where graph stops being linear.
+        </p>
       </div>
-      
+
       <div class="concept">
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
           <h3>newton's second law</h3>
-          <p><code>f = ma</code>, where m is mass of object and a is acceleration of object. force and acceleration are in the same direction.</p>
+          <p class="formula">$F = ma$</p>
         </div>
       </div>
 
       <div class="section">
-        <h3>circular motion due to perpendicular force</h3>
-        <ul>
-          <li>speed increases if force increases (constant mass and radius)</li>
-          <li>radius decreases if force increases (constant mass and speed)</li>
-          <li>increased mass requires increased force (constant speed and radius)</li>
-        </ul>
-
         <h3>friction</h3>
-        <p><strong>solid friction:</strong> opposes motion between surfaces, causes heating.</p>
-        <p><strong>liquid drag:</strong> opposes motion through liquids, increases with speed and viscosity.</p>
-        <p><strong>air resistance:</strong> opposes motion through air, proportional to v².</p>
+        <p><strong>solid friction:</strong> opposes motion between surfaces.</p>
+        <p><strong>liquid drag:</strong> increases with speed and viscosity.</p>
+        <p><strong>air resistance:</strong> proportional to $v^2$.</p>
       </div>
 
       <div class="section">
         <h2>1.5.2 | turning effect of forces</h2>
-        <h3>moment of a force</h3>
-        <p>measure of a force's turning effect about a pivot.</p>
+
+        <p>moment of a force is turning effect about a pivot.</p>
       </div>
 
       <div class="concept">
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
           <h3>moment definition</h3>
-          <p><code>m = f × d</code> (unit: Nm), where d is perpendicular distance from pivot.</p>
+          <p class="formula">$M = F \times d$ (Nm)</p>
         </div>
       </div>
 
       <div class="section">
-        <h3>complex situations</h3>
-        <p>calculate moment for each force separately, sum clockwise and anticlockwise moments, equate them for equilibrium.</p>
+        <h3>equilibrium</h3>
+        <p>
+          sum of clockwise moments = sum of anticlockwise moments.
+        </p>
 
-        <h3>experimental demonstration</h3>
-        <p>hang mass on one side of meter rule pivot, balance with another mass, measure distances. verify: f₁ × d₁ = f₂ × d₂.</p>
-        
-        <p>you can use moments to find mass! mark centre of mass, find the distance from the pivot to the centre of mass, then find the moments on the object. the missing moment value divided by the distance from the centre of mass to the pivot will be the weight of the object, which after dividing by 9.8, will be the mass!</p>
-      </div>
-
-      <div class="concept">
-        <div class="atom"><div class="atom-dot"></div></div>
-        <div>
-          <h3>centre of gravity</h3>
-          <p>the point where the entire weight of an object acts. for uniformly-shaped objects, it is at the geometric centre.</p>
-        </div>
+        <p>
+          experimental verification: balance meter rule using weights.
+        </p>
       </div>
 
       <div class="section">
         <h2>1.5.3 | centre of gravity</h2>
-        <p>the single point where the the entire weight of an object acts is the centre of gravity.</p>
 
-        <h3>finding centre of gravity of an irregular shape</h3>
-        <p>hang the shape from different points near its edge. hang a plumb line from the same point and draw a vertical line on the shape. repeat from multiple holes. the centre of gravity is where the lines intersect.</p>
+        <p>
+          centre of gravity is point where entire weight acts.
+        </p>
 
-        <h3>effect of position of centre of gravity on stability</h3>
+        <h3>finding it</h3>
+        <p>
+          hang object, use plumb line, repeat from different points. intersection gives centre.
+        </p>
+
+        <h3>stability</h3>
         <ul>
-            <li>lower centre of gravity = more stable</li>
-            <li>higher centre of gravity = less stable</li>
-            <li>wider base = more stable</li>
-            <li>narrow base = less stable</li>
-            <li>line of action of weight must fall within base for stability</li>
+          <li>lower centre of gravity → more stable</li>
+          <li>higher → less stable</li>
+          <li>wide base → more stable</li>
+          <li>line of action must fall within base</li>
         </ul>
-        <p>the line of action is a straight, imaginary vertical line through the centre of gravity.</p>
+
+        <p>
+          line of action = vertical line through centre of gravity.
+        </p>
       </div>
-      
-    </div>
 
     </div>
   </div>

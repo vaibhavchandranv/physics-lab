@@ -7,7 +7,11 @@
   <link rel="preconnect" href="https://rsms.me" />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
   <link rel="stylesheet" href="../../styles.css" />
+
+  <script src="https://vaibhavchandranv.github.io/physics-lab/mathjax.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
+
 <body>
   <div class="bg-grid"></div>
   <div class="bg-fade"></div>
@@ -30,34 +34,36 @@
       <div class="topic-num">1.7</div>
       <h1 class="title">energy, work & power</h1>
 
-
-
       <div class="concept">
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
           <h3>energy stores</h3>
-          <p>energy can be stored as kinetic, gravitational potential, chemical, elastic (strain), nuclear, electrostatic, and internal (thermal).</p>
+          <p>
+            energy can be stored as kinetic, gravitational potential, chemical, elastic (strain),
+            nuclear, electrostatic, and internal (thermal).
+          </p>
         </div>
       </div>
 
       <div class="section">
         <h2>1.7.1 | energy</h2>
+
         <h3>types of energy stores</h3>
         <ul>
-            <li>kinetic energy - energy of moving objects</li>
-            <li>gravitational potential energy - energy due to height in a gravitational field</li>
-            <li>chemical energy - energy stored in chemical bonds</li>
-            <li>elastic (strain) energy - energy stored in deformed elastic materials</li>
-            <li>nuclear energy - energy stored in atomic nuclei</li>
-            <li>electrostatic energy - energy due to electric charges</li>
-            <li>internal (thermal) energy - energy due to the motion of particles within a substance</li>
+          <li>kinetic energy - energy of moving objects</li>
+          <li>gravitational potential energy - energy due to height in a gravitational field</li>
+          <li>chemical energy - energy stored in chemical bonds</li>
+          <li>elastic (strain) energy - energy stored in deformed elastic materials</li>
+          <li>nuclear energy - energy stored in atomic nuclei</li>
+          <li>electrostatic energy - energy due to electric charges</li>
+          <li>internal (thermal) energy - energy due to particle motion</li>
         </ul>
+
         <h3>energy transfer between stores</h3>
-        <p>energy transfers during events and processes through multiple methods:</p>
         <ul>
-            <li>mechanical work - energy transfer through forces causing movement</li>
-            <li>heating - energy transfer due to temperature difference</li>
-            <li>radiation - energy transfer through electromagnetic waves (e.g., light, sound)</li>
+          <li>mechanical work - energy transfer by forces causing motion</li>
+          <li>heating - energy transfer due to temperature difference</li>
+          <li>radiation - energy transfer via electromagnetic waves</li>
         </ul>
       </div>
 
@@ -65,7 +71,7 @@
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
           <h3>kinetic energy</h3>
-          <p><code>k.e. = ½mv²</code>  (unit: joules (j)) if velocity doubles, kinetic energy quadruples.</p>
+          <p class="formula">$KE = \frac{1}{2}mv^2$ (unit: J). if velocity doubles, kinetic energy quadruples.</p>
         </div>
       </div>
 
@@ -73,58 +79,69 @@
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
           <h3>gravitational potential energy</h3>
-          <p><code>g.p.e. = mgh</code>  (unit: joules (j)) where m is mass, g is gravitational field strength (9.8 m/s²), and h is height.</p>
+          <p class="formula">$GPE = mgh$ (unit: J), where g = 9.8 m/s².</p>
         </div>
       </div>
 
       <div class="section">
         <h3>conservation of energy</h3>
-        <p>energy cannot be created or destroyed, only transferred between stores. total energy in a closed system remains constant. in simple examples, kinetic and potential energy convert between each other.</p>
+        <p>
+          energy cannot be created or destroyed, only transferred between stores.
+        </p>
+
         <h3>sankey diagrams</h3>
-        <p>sankey diagrams visually represent energy transfers and losses in a system. the width of arrows is proportional to the amount of energy transferred or lost.</p>
+        <p>
+          diagrams where arrow width represents energy transfer.
+        </p>
       </div>
 
       <div class="section">
         <h2>1.7.2 | work</h2>
-        <h3>mechanical and electrical work</h3>
-        <p>work is done when a force causes displacement in the direction of that force. the energy transferred equals the work done. mechanical work is done by forces moving objects. electrical work is done by currents in circuits.</p>
+
+        <h3>definition</h3>
+        <p>
+          work is done when a force causes displacement in its direction.
+        </p>
+
         <h3>calculating work</h3>
-        <p><code>w = fd</code>, where f is the force in the direction of motion and d is the displacement. only the component of force parallel to motion does work. work can also be expressed as w = ∆e, the change in energy of the object.</p>
+        <p class="formula">$$W = Fd$$</p>
+
+        <ul>
+          <li class="formula">$W = Fd$ (force parallel to motion)</li>
+          <li class="formula">$W = \Delta E$ (work equals energy change)</li>
+        </ul>
       </div>
 
       <div class="concept">
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
           <h3>work</h3>
-          <p>work done equals energy transferred. <code>w = fd = ∆e</code> (unit: j). force must act in the direction of motion for work to be done.</p>
+          <p class="formula">$W = Fd = \Delta E$ (unit: J)</p>
         </div>
       </div>
 
       <div class="section">
         <h2>1.7.3 | energy resources</h2>
-        <h3>fossil fuels</h3>
-        <p>chemical energy stored in coal, oil, and natural gas. burned to release energy for electricity generation. non-renewable; finite supply.</p>
-        <h3>biofuels</h3>
-        <p>chemical energy stored in organic matter like plants and animal waste. converted into usable fuels for electricity generation. renewable but requires large amounts of land and water.</p>
-        <h3>geothermal resources</h3>
-        <p>thermal energy from the Earth's core. used to generate electricity by heating water to produce steam. renewable but limited to specific locations.</p>
-        <h3>nuclear fuels</h3>
-        <p>uranium and thorium undergo fission to release energy. generates electricity without greenhouse gases. non-renewable but very dense energy source.</p>
-        <h3>solar energy</h3>
-        <p>solar cells convert light from the Sun directly into electrical power. solar panels use infrared radiation from the Sun to heat water. renewable.</p>
-        <h3>wind energy</h3>
-        <p>wind is driven by solar heating of the atmosphere. turbines convert wind energy into electricity. renewable.</p>
-        <h3>water resources</h3>
-        <p>waves and tides store energy from the Sun and Moon. hydroelectric dams use water behind barriers to generate electricity. renewable and reliable.</p>
-        <h3>advantages and disadvantages</h3>
-        <p>each method differs in renewability (renewable vs non-renewable), availability (constant vs intermittent), reliability, scale, and environmental impact. fossil fuels are reliable but cause pollution. renewables are cleaner but may be less reliable.</p>
+
+        <ul>
+          <li>fossil fuels - chemical energy, non-renewable</li>
+          <li>biofuels - renewable but land intensive</li>
+          <li>geothermal - heat from earth</li>
+          <li>nuclear fuels - fission energy</li>
+          <li>solar - light to electricity</li>
+          <li>wind - turbine energy</li>
+          <li>water - hydro, tides, waves</li>
+        </ul>
       </div>
 
       <div class="concept">
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
           <h3>efficiency</h3>
-          <p><code>% efficiency = (useful energy output / total energy input) × 100%</code>. can also use power: <code>% efficiency = (useful power output / total power input) × 100%</code>. no energy conversion is 100% efficient; some energy is always wasted as heat.</p>
+          <p class="formula">$\% \, \text{efficiency} = \frac{\text{useful output}}{\text{total input}} \times 100$</p>
+          <p>
+            no system is 100% efficient; energy is always lost as heat.
+          </p>
         </div>
       </div>
 
@@ -132,29 +149,34 @@
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
           <h3>nuclear fusion in the sun</h3>
-          <p>the Sun's energy comes from hydrogen nuclei fusing together to form helium, releasing vast amounts of energy. research is investigating whether this process can be used to generate electrical energy on Earth.</p>
+          <p>
+            hydrogen nuclei fuse to form helium, releasing energy.
+          </p>
         </div>
       </div>
 
       <div class="section">
         <h2>1.7.4 | power</h2>
+
         <h3>definition</h3>
-        <p>power is the rate at which work is done or energy is transferred. it measures how quickly energy is being used or converted. a more powerful device transfers more energy in the same time than a less powerful device.</p>
+        <p>
+          power is the rate of energy transfer.
+        </p>
+
         <h3>calculating power</h3>
-        <p><code>p = w/t</code>, where w is work done and t is time. alternatively, <code>p = ∆e/t</code>, where ∆e is change in energy. power is measured in watts (w) or joules per second (j/s).</p>
+
+        <p class="formula">$$P = \frac{W}{t}$$</p>
+        <p class="formula">$$P = \frac{\Delta E}{t}$$</p>
       </div>
 
       <div class="concept">
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
           <h3>power</h3>
-          <p>work done per unit time or energy transferred per unit time. <code>p = w/t = ∆e/t</code> (unit: w or j/s). higher power means faster energy transfer.</p>
+          <p class="formula">$P = \frac{W}{t} = \frac{\Delta E}{t}$ (unit: W)</p>
         </div>
       </div>
 
-
-      
-    </div>
     </div>
   </div>
 </body>
