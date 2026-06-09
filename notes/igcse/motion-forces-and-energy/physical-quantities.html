@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>1.1 physical quantities · physics lab</title>
+  <title>1.2 motion · physics lab</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="preconnect" href="https://rsms.me" />
   <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
@@ -18,8 +18,8 @@
     <div class="sidebar">
       <a href="index.html" class="sidebar-back">← back</a>
       <div class="sidebar-title">unit 1</div>
-      <a href="physical-quantities.html" class="nav-item active">1.1 physical quantities</a>
-      <a href="motion.html" class="nav-item">1.2 motion</a>
+      <a href="physical-quantities.html" class="nav-item">1.1 physical quantities</a>
+      <a href="motion.html" class="nav-item active">1.2 motion</a>
       <a href="mass-weight.html" class="nav-item">1.3 mass &amp; weight</a>
       <a href="density.html" class="nav-item">1.4 density</a>
       <a href="force.html" class="nav-item">1.5 forces</a>
@@ -29,95 +29,99 @@
     </div>
 
     <div class="content">
-      <div class="topic-num">1.1</div>
-      <h1 class="title">physical quantities and measurement</h1>
+      <div class="topic-num">1.2</div>
+      <h1 class="title">motion</h1>
+
+      <div class="concept">
+        <div class="atom"><div class="atom-dot"></div></div>
+        <div>
+          <h3>speed and velocity</h3>
+          <p><strong>speed</strong> is the distance travelled per unit time. it has no direction. <strong>velocity</strong> is speed in a given direction. it has magnitude and direction.</p>
+        </div>
+      </div>
 
       <div class="section">
-        <h2>measurements</h2>
+        <h2>calculating speed</h2>
+        <p>use the equation:</p>
+        <p class="formula"> $$ v = \frac{s}{t} $$</p>
+        <p>where $v$ is speed (m/s), $s$ is distance (m), and $t$ is time (s).</p>
         
-        <h3>measuring length</h3>
-        <p>use a ruler to measure lengths. place the object along the scale with the zero mark at one end. read the measurement at the other end. always read perpendicular to the scale to avoid parallax error.</p>
-        <div style="display: flex; gap: 10px; align-items: center;">
-            <img src="diagrams/Chapter1-18.png" alt="Measuring tape" width=300>
-            <img src="diagrams/Chapter1-19.png" alt="Ruler" width=300>
+        <h3>average speed</h3>
+        <p>when an object changes speed, calculate average speed using:</p>
+        <p class="formula"> $$ \text{average speed} = \frac{\text{total distance}}{\text{total time}} $$ </p>
+      </div>
+
+      <div class="section">
+        <h2>distance-time graphs</h2>
+        <p>these graphs show how distance changes with time.</p>
+        <ul>
+          <li><strong>horizontal line:</strong> object is at rest (not moving)</li>
+          <li><strong>straight diagonal line:</strong> object moving with constant speed</li>
+          <li><strong>curved line (getting steeper):</strong> object accelerating</li>
+          <li><strong>curved line (getting flatter):</strong> object decelerating</li>
+        </ul>
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <img src="diagrams/Physics_Notes_O_Levels (1).pdf (3).png" alt="Distance Time" width=300>
+            <img src="diagrams/Physics_Notes_O_Levels (1).pdf (4).png" alt="Distance Time" width=300>
+        </div>
+        
+        <h3>speed from distance-time graphs</h3>
+        <p>the gradient (slope) of a straight line section equals the speed. calculate using:</p>
+        <p class="formula">$$ s = \frac{\Delta d}{\Delta t} = \frac{\text{change in distance}}{\text{change in time}}$$</p>
+      </div>
+
+      <div class="section">
+        <h2>speed-time graphs</h2>
+        <p>these graphs show how speed changes with time.</p>
+        <ul>
+          <li><strong>horizontal line:</strong> object moving with constant speed (zero acceleration)</li>
+          <li><strong>straight diagonal line (sloping up):</strong> object accelerating at constant rate</li>
+          <li><strong>straight diagonal line (sloping down):</strong> object decelerating at constant rate</li>
+          <li><strong>curved line:</strong> object accelerating or decelerating at changing rate</li>
+        </ul>
+        <div style="display: flex; gap: 20px; align-items: center;">
+            <img src="diagrams/Physics_Notes_O_Levels (1).pdf (5).png" alt="Speed Time" width=300>
+            <img src="diagrams/Physics_Notes_O_Levels (1).pdf (6).png" alt="Speed Time" width=300>
         </div>
 
-        <h3>measuring volume</h3>
-        <p>use a measuring cylinder to find the volume of liquids or irregular solids. read the volume at the bottom of the meniscus (curved surface) with your eye level with the scale to avoid parallax error.</p>
-        <div style="display: flex; gap: 20px; align-items: center;">
-            <img src="diagrams/Chapter1-06.png" alt="Reading measuring cylinder" size=0.5>
-        </div>
-
-        <h3>measuring time</h3>
-        <p>use a clock or digital timer to measure time intervals. a stopwatch is accurate to about 0.01 s. for short, repeating events (like a pendulum swing), measure the time for multiple cycles and divide by the number of cycles to reduce error.</p>
-        <div style="display: flex; gap: 20px; align-items: center;">
-            <img src="diagrams/Chapter1-27.png" alt="Stopwatch" size=0.5>
-        </div>
+        <h3>distance from speed-time graphs</h3>
+        <p>the area under a speed-time graph equals the distance travelled. for constant speed or constant acceleration, use geometry to find the area (rectangle or triangle).</p>
       </div>
 
       <div class="concept">
         <div class="atom"><div class="atom-dot"></div></div>
         <div>
-          <h3>scalar quantities</h3>
-          <p>have magnitude (size) only. no direction needed. examples: distance, speed, time, mass, energy, temperature.</p>
-        </div>
-      </div>
-
-      <div class="concept">
-        <div class="atom"><div class="atom-dot"></div></div>
-        <div>
-          <h3>vector quantities</h3>
-          <p>have magnitude and direction. direction is essential to describe them fully. examples: force, weight, velocity, acceleration, momentum, electric field strength, gravitational field strength.</p>
+          <h3>acceleration</h3>
+          <p>acceleration is the change in velocity per unit time. use the equation:</p>
+          <p style="margin: 0.6rem 0 0 0;"> $$ a = \frac{\Delta v}{\Delta t} $$ </p>
+          <p style="margin: 0.4rem 0 0 0;">where $a$ is acceleration (m/s²), $\Delta v$ is change in velocity (m/s), and $\Delta t$ is time interval (s).</p>
         </div>
       </div>
 
       <div class="section">
-        <h2>finding resultant vectors</h2>
-        <p>the resultant is the single vector that has the same effect as two or more vectors combined. for two vectors at right angles, use the pythagorean theorem:</p>
-        <p class="formula">$$R^2 = A^2 + B^2$$</p>
-        <div style="display: flex; gap: 20px; align-items: center;">
-            <img src="diagrams/Physics_Notes_O_Levels (1).pdf (1).png" alt="Resultant vectors pythagoras" size=0.5>
-        </div>
-        <p>alternatively, draw the vectors to scale on graph paper, place them head-to-tail, and measure the resultant from the start of the first vector to the end of the second.</p>
-        <div style="display: flex; gap: 20px; align-items: center;">        
-          <img src="diagrams/Physics_Notes_O_Levels (1).pdf.png" alt="Resultant vectors" size=0.5>
-        </div>
+        <h2>acceleration from speed-time graphs</h2>
+        <p>the gradient (slope) of a speed-time graph equals the acceleration. a steeper line means faster acceleration.</p>
+        
+        <h3>deceleration</h3>
+        <p>deceleration is negative acceleration (slowing down). when drawing speed-time graphs, a line sloping downward represents deceleration.</p>
       </div>
 
       <div class="section">
-        <h2>parallax error</h2>
-        <p>reading an instrument at an angle rather than straight on. the value appears to shift depending on viewing angle.</p>
+        <h2>free fall and gravity</h2>
+        <p>an object falling freely near earth's surface accelerates due to gravity. the acceleration is approximately constant:</p>
+        <p class="formula">$$ g \approx 9.8 m/s^2 $$</p>
+        
+        <h3>air resistance and terminal velocity</h3>
+        <p>as an object falls, air resistance increases with speed. eventually, air resistance equals the weight, and the object stops accelerating. the maximum speed reached is called <strong>terminal velocity</strong>. an object falling through a liquid (like oil) reaches terminal velocity much faster than through air.</p>
+        <p>the speed-time graph for falling with air resistance shows: steep curve at first (accelerating), then flattening (approaching constant speed as terminal velocity is reached).</p>
+      </div>
+
+      <div class="section">
+        <h2>key equations (core and supplement)</h2>
         <ul>
-          <li>read measuring cylinders at eye level with the meniscus</li>
-          <li>read rulers perpendicular to the scale</li>
-          <li>read analogue meters from directly in front</li>
-        </ul>
-        <p>parallax error is <strong>systematic</strong> – it cannot be removed by averaging. you must use correct technique.</p>
-      </div>
-
-      <div class="section">
-        <h2>systematic error</h2>
-        <p>error that shifts all measurements in one direction (consistently too high or too low).</p>
-        <ul>
-          <li><strong>zero error:</strong> thermometer reads 0.2°c in ice</li>
-          <li><strong>parallax:</strong> always reading a scale from the side</li>
-          <li><strong>calibration:</strong> a ruler has shrunk slightly</li>
-        </ul>
-        <p>differs from random error (scattered readings). averaging does not reduce systematic error – you must fix the cause.</p>
-      </div>
-
-      <div class="section">
-        <h2>measurement uncertainty</h2>
-        <p>every measurement has limits to its precision. a ruler's smallest division is 1 mm, so uncertainty is ±0.5 mm. record measurements to match your instrument's precision.</p>
-      </div>
-
-      <div class="section">
-        <h2>significant figures</h2>
-        <ul>
-          <li>all non-zero digits are significant (2.5 = 2 sig figs)</li>
-          <li>zeros between non-zero digits are significant (2.05 = 3 sig figs)</li>
-          <li>leading zeros are not significant (0.025 = 2 sig figs)</li>
-          <li>trailing zeros after decimal point are significant (2.50 = 3 sig figs)</li>
+          <li class="formula">$s = \frac{d}{t}$ (speed)</li>
+          <li class="formula">$a = \frac{\Delta v}{\Delta t} $ (acceleration)</li>
+          <li class="formula">$g \approx 9.8 m/s^2$ (free fall)</li>
         </ul>
       </div>
     </div>
