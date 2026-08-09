@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>unit 9 notes · physics lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://rsms.me" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBNR4ZF2G5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TBNR4ZF2G5');
+  </script>
+
+  <style>
+    :root {
+      --bg: #050508;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
+      --muter: #6b7280;
+      --border: #272a33;
+      --box: #0f1a2e;
+      --box-border: #1e3a5f;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      min-height: 100%;
+    }
+
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      color: var(--text);
+      background: #000;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .bg-grid {
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, #151821 1px, transparent 1px),
+        linear-gradient(to bottom, #151821 1px, transparent 1px);
+      background-size: 72px 72px;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .bg-fade {
+      position: fixed;
+      inset: 0;
+      background: radial-gradient(circle at top, #050711 0, #000000 55%);
+      box-shadow: inset 0 0 160px #000000;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 2.4rem 1.5rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      min-height: 100vh;
+    }
+
+    .back-link {
+      font-size: 0.7rem;
+      color: var(--muter);
+      display: inline-block;
+      align-self: flex-start;
+      transition: color 0.15s;
+    }
+
+    .back-link:hover {
+      color: var(--muted);
+    }
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .unit-label {
+      font-size: 0.75rem;
+      color: var(--muter);
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .title {
+      font-size: 2rem;
+      font-weight: 400;
+      color: var(--text);
+      text-transform: lowercase;
+    }
+
+    .subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      max-width: 550px;
+      line-height: 1.6;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.2rem;
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .card {
+      border: 1px solid var(--box-border);
+      background: var(--box);
+      border-radius: 10px;
+      padding: 1.4rem;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .card:hover {
+      border-color: #60d4ff;
+      background: linear-gradient(135deg, rgba(96, 212, 255, 0.08), transparent);
+      transform: translateY(-1px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.8);
+    }
+
+    .card-num {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muter);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      text-transform: lowercase;
+    }
+
+    .card-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="bg-grid"></div>
+<div class="bg-fade"></div>
+
+<div class="container">
+
+  <a href="/physics-lab/notes/alevels/as-level/aslevel.html" class="back-link">
+    ← back to units
+  </a>
+
+  <div class="header">
+    <div class="unit-label">unit 9</div>
+
+    <h1 class="title">electricity</h1>
+
+<p class="subtitle">
+    electric current, potential difference, electrical power, resistance, resistivity, and electrical components.
+</p>
+
+<p class="subtitle">
+    written by vaibhav
+</p>
+</div>
+
+<div class="grid">
+
+<a href="electric-current.html" class="card">
+    <div class="card-num">9.1</div>
+    <div class="card-title">electric current</div>
+    <div class="card-desc">
+    charge, current, charge carriers, and drift velocity.
+    </div>
+</a>
+
+<a href="potential-difference-power.html" class="card">
+    <div class="card-num">9.2</div>
+    <div class="card-title">potential difference and power</div>
+    <div class="card-desc">
+    potential difference, energy, and electrical power.
+    </div>
+</a>
+
+<a href="resistance-resistivity.html" class="card">
+    <div class="card-num">9.3</div>
+    <div class="card-title">resistance and resistivity</div>
+    <div class="card-desc">
+    resistance, Ohm's law, I–V characteristics, and resistivity.
+    </div>
+</a>
+
+</div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
