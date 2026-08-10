@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>10.2 kirchhoff's laws · physics lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://rsms.me" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://vaibis.github.io/physics-lab/mathjax.js"></script>
+</head>
+
+<body>
+<div class="bg-grid"></div>
+<div class="bg-fade"></div>
+
+<div class="shell">
+
+  <div class="sidebar">
+    <a href="index.html" class="sidebar-back">← back</a>
+    <div class="sidebar-title">unit 10</div>
+
+    <a href="practical-circuits.html" class="nav-item">10.1 practical circuits</a>
+    <a href="kirchhoffs-laws.html" class="nav-item active">10.2 kirchhoff's laws</a>
+    <a href="potential-dividers.html" class="nav-item">10.3 potential dividers</a>
+  </div>
+
+  <div class="content">
+
+  <div class="topic-num">10.2</div>
+  <h1 class="title">kirchhoff's laws</h1>
+
+  <div class="section">
+
+  <h2>kirchhoff's first law</h2>
+
+  <p>
+    kirchhoff's first law states that the total current entering a junction
+    is equal to the total current leaving the junction.
+  </p>
+
+  <p class="formula">
+    $$\sum I_{\text{in}}=\sum I_{\text{out}}$$
+  </p>
+
+  <p>
+    this law is a consequence of the conservation of charge. charge cannot
+    accumulate at a junction, so the amount of charge flowing in must equal
+    the amount flowing out.
+  </p>
+
+  <img src="https://studymind.co.uk/wp-content/uploads/2023/05/230716.png">
+
+</div>
+
+<div class="section">
+
+  <h2>kirchhoff's second law</h2>
+
+  <p>
+    kirchhoff's second law states that the sum of the e.m.f.s around a
+    complete loop is equal to the sum of the potential differences across
+    the components in that loop.
+  </p>
+
+  <p class="formula">
+    $$\sum\mathcal{E}=\sum IR$$
+  </p>
+
+  <p>
+    this law is a consequence of the conservation of energy. the total energy
+    supplied to charge carriers around a complete loop must equal the total
+    energy transferred by the components.
+  </p>
+
+  <img src="https://cdn-ilcgdmp.nitrocdn.com/ZNZGaPUCQqgkHHGdlFKJfPiIeULNhire/assets/images/optimized/rev-0a35a9f/studymind.co.uk/wp-content/uploads/2023/05/231610.png">
+
+</div>
+
+<div class="section">
+
+  <h2>resistors in series</h2>
+
+  <p>
+    when resistors are connected in series, the same current flows through
+    every resistor.
+  </p>
+
+  <p>
+    applying kirchhoff's second law to a circuit containing two resistors gives
+  </p>
+
+  <p class="formula">
+    $$V=V_1+V_2$$
+  </p>
+
+  <p>
+    using $V=IR$ for each resistor,
+  </p>
+
+  <p class="formula">
+    $$IR_{\mathrm{total}}=IR_1+IR_2$$
+  </p>
+
+  <p>
+    therefore,
+  </p>
+
+  <p class="formula">
+    $$R_{\mathrm{total}}=R_1+R_2$$
+  </p>
+
+  <p>
+    for any number of resistors connected in series,
+  </p>
+
+  <p class="formula">
+    $$R_{\mathrm{total}}=R_1+R_2+R_3+\cdots$$
+  </p>
+
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRiUya-jUKR_eakhz3z_S9XCfQbhy6GWcQHKUGOy6MWsCfxcl3-brghS2vR&s=10">
+
+</div>
+
+<div class="section">
+
+  <h2>resistors in parallel</h2>
+
+  <p>
+    when resistors are connected in parallel, the potential difference across
+    each resistor is the same.
+  </p>
+
+  <p>
+    applying kirchhoff's first law to a circuit containing two parallel
+    resistors gives
+  </p>
+
+  <p class="formula">
+    $$I=I_1+I_2$$
+  </p>
+
+  <p>
+    using $I=\frac{V}{R}$ for each branch,
+  </p>
+
+  <p class="formula">
+    $$\frac{V}{R_{\mathrm{total}}}
+    =
+    \frac{V}{R_1}+\frac{V}{R_2}$$
+  </p>
+
+  <p>
+    cancelling $V$ gives
+  </p>
+
+  <p class="formula">
+    $$\frac{1}{R_{\mathrm{total}}}
+    =
+    \frac{1}{R_1}+\frac{1}{R_2}$$
+  </p>
+
+  <p>
+    for any number of resistors connected in parallel,
+  </p>
+
+  <p class="formula">
+    $$\frac{1}{R_{\mathrm{total}}}
+    =
+    \frac{1}{R_1}+\frac{1}{R_2}+\frac{1}{R_3}+\cdots$$
+  </p>
+
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQczfwcakmiNWgILt06F8fmHIuDG-pc80eBxO1vAjGyMu6ENAT-mnttqk_-&s=10">
+
+</div>
+
+<div class="section">
+
+  <h2>solving circuit problems</h2>
+
+  <p>
+    kirchhoff's laws can be used to determine unknown currents, potential
+    differences, and resistances in circuits containing multiple loops or
+    junctions.
+  </p>
+
+  <p>
+    first assign current directions to the different branches of the circuit.
+    then apply kirchhoff's first law at junctions and kirchhoff's second law
+    around independent loops.
+  </p>
+
+  <p>
+    if a calculated current is negative, the actual current flows in the
+    opposite direction to the direction initially chosen.
+  </p>
+
+  <img src="https://pressbooks.online.ucf.edu/app/uploads/sites/372/2021/04/CNX_UPhysics_27_02_Kirchhoff3.jpg">
+
+</div>
+
+</div>
+</body>
+</html>

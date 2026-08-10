@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>10.1 practical circuits · physics lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://rsms.me" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://vaibis.github.io/physics-lab/mathjax.js"></script>
+</head>
+
+<body>
+<div class="bg-grid"></div>
+<div class="bg-fade"></div>
+
+<div class="shell">
+
+  <div class="sidebar">
+    <a href="index.html" class="sidebar-back">← back</a>
+    <div class="sidebar-title">unit 10</div>
+
+    <a href="practical-circuits.html" class="nav-item active">10.1 practical circuits</a>
+    <a href="kirchhoffs-laws.html" class="nav-item">10.2 kirchhoff's laws</a>
+    <a href="potential-dividers.html" class="nav-item">10.3 potential dividers</a>
+  </div>
+
+  <div class="content">
+
+  <div class="topic-num">10.1</div>
+  <h1 class="title">practical circuits</h1>
+
+  <div class="section">
+
+  <h2>circuit symbols</h2>
+
+  <p>
+    circuit diagrams use standard symbols to represent electrical components.
+    using standard symbols makes circuits easier to draw, read, and interpret.
+  </p>
+
+  <p>
+    the symbols used in this syllabus include cells, batteries, switches,
+    resistors, variable resistors, lamps, diodes, ammeters, voltmeters,
+    thermistors, and light-dependent resistors.
+  </p>
+
+  <img src="https://imgv2-2-f.scribdassets.com/img/document/981459227/original/ab05807f3b/1?v=1">
+
+</div>
+
+<div class="section">
+
+  <h2>circuit diagrams</h2>
+
+  <p>
+    a circuit diagram represents the electrical connections between components
+    using standard circuit symbols and connecting wires.
+  </p>
+
+  <p>
+    components connected in the same continuous path are in series, while
+    components connected across the same two points are in parallel.
+  </p>
+
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQLUGimAZGN7J5FwEUkn3q-NfyYiS5LJ4Fj6zYYHaa1gZXKHdaLNMNbs3if&s=10">
+
+</div>
+
+<div class="section">
+
+  <h2>electromotive force</h2>
+
+  <p>
+    the electromotive force, or <b>e.m.f.</b>, of a source is the energy
+    transferred by the source per unit charge in driving charge around a
+    complete circuit.
+  </p>
+
+  <p class="formula">
+    $$\mathcal{E}=\frac{W}{Q}$$
+  </p>
+
+  <ul>
+    <li>$\mathcal{E}$ = e.m.f. (V)</li>
+    <li>$W$ = energy supplied by the source (J)</li>
+    <li>$Q$ = charge passing through the source (C)</li>
+  </ul>
+
+  <p>
+    e.m.f. is measured in volts, where one volt is equal to one joule of
+    energy transferred per coulomb of charge.
+  </p>
+
+  <p class="formula">
+    $$1\,\mathrm{V}=1\,\mathrm{J\,C^{-1}}$$
+  </p>
+
+  <!-- diagram placeholder: source supplying energy to charge carriers -->
+
+</div>
+
+<div class="section">
+
+  <h2>e.m.f. and potential difference</h2>
+
+  <p>
+    e.m.f. describes the energy supplied per unit charge by a source to drive
+    charge around the complete circuit.
+  </p>
+
+  <p>
+    potential difference describes the energy transferred per unit charge by
+    a component as charge passes through it.
+  </p>
+
+  <p class="formula">
+    $$\mathcal{E}=\frac{\text{energy supplied}}{\text{charge}}$$
+  </p>
+
+  <p class="formula">
+    $$V=\frac{\text{energy transferred}}{\text{charge}}$$
+  </p>
+
+  <p>
+    therefore, e.m.f. refers to energy supplied by the source, while p.d.
+    refers to energy transferred by a component.
+  </p>
+
+  <!-- diagram placeholder: energy supplied by source and transferred by circuit components -->
+
+</div>
+
+<div class="section">
+
+  <h2>internal resistance</h2>
+
+  <p>
+    a real source of e.m.f. has some resistance within the source itself.
+    this is called its <b>internal resistance</b>.
+  </p>
+
+  <p>
+    when current flows, some of the energy supplied by the source is
+    transferred within the source itself. this causes the terminal potential
+    difference to be smaller than the e.m.f.
+  </p>
+
+  <p class="formula">
+    $$V=\mathcal{E}-Ir$$
+  </p>
+
+  <ul>
+    <li>$V$ = terminal potential difference (V)</li>
+    <li>$\mathcal{E}$ = e.m.f. of the source (V)</li>
+    <li>$I$ = current in the circuit (A)</li>
+    <li>$r$ = internal resistance of the source ($\Omega$)</li>
+  </ul>
+
+  <p>
+    the quantity $Ir$ is called the <b>lost volts</b>. it is the potential
+    difference across the internal resistance of the source.
+  </p>
+
+  <p class="formula">
+    $$\text{lost volts}=Ir$$
+  </p>
+
+  <p>
+    if no current flows, $I=0$, so the terminal potential difference equals
+    the e.m.f. of the source.
+  </p>
+
+  <p class="formula">
+    $$V=\mathcal{E}$$
+  </p>
+
+  <p>
+    for a given source, increasing the current increases the energy lost
+    inside the source and therefore decreases the terminal potential
+    difference.
+  </p>
+
+  <img src="https://homework.study.com/cimages/multimages/16/img_20200510_511248901458716597326893.jpg">
+
+</div>
+
+</div>
+</body>
+</html>
