@@ -2,7 +2,7 @@
     "use strict";
 
     const STORAGE_KEY = "physicsLabAnnotations";
-    const CONTENT_SELECTOR = "main";
+    const CONTENT_SELECTOR = "content";
 
     let currentColor = "#fff59d";
     let annotations = loadAnnotations();
