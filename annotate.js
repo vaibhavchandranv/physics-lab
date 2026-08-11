@@ -2,163 +2,146 @@
     "use strict";
 
     const STORAGE_KEY = "physicsLabAnnotations";
-    const CONTENT_SELECTOR = "content";
+    const CONTENT_SELECTOR = ".content";
 
     let currentColor = "#fff59d";
-    let annotations = loadAnnotations();
 
     // ─────────────────────────────────────────────
-    // storage
+    // wait until the page exists
     // ─────────────────────────────────────────────
 
-    function getPageKey() {
-        return window.location.pathname;
-    }
+    function init() {
+        const content = document.querySelector(CONTENT_SELECTOR);
 
-    function loadAnnotations() {
-        try {
-            return JSON.parse(
-                localStorage.getItem(STORAGE_KEY)
-            ) || {};
-        } catch {
-            return {};
+        if (!content) {
+            console.error(
+                "physics lab annotate.js: .content not found"
+            );
+            return;
         }
-    }
 
-    function saveAnnotations() {
-        localStorage.setItem(
-            STORAGE_KEY,
-            JSON.stringify(annotations)
+        console.log(
+            "physics lab annotate.js: loaded successfully"
         );
-    }
 
-    function getPageAnnotations() {
-        const page = getPageKey();
-
-        if (!annotations[page]) {
-            annotations[page] = [];
-        }
-
-        return annotations[page];
+        createStyles();
+        createToolbar(content);
     }
 
     // ─────────────────────────────────────────────
     // toolbar
     // ─────────────────────────────────────────────
 
-    function createToolbar() {
+    function createToolbar(content) {
         const toolbar = document.createElement("div");
 
         toolbar.id = "physics-lab-annotation-toolbar";
 
         toolbar.innerHTML = `
-            <button data-action="highlight" title="highlight">
+            <button id="annotate-highlight" title="highlight">
                 🖍
             </button>
 
-            <button data-action="note" title="add note">
+            <button id="annotate-note" title="note">
                 📝
             </button>
 
-            <span class="annotation-divider"></span>
+            <span class="annotate-divider"></span>
 
             <button
-                class="color-button cyan"
+                class="annotate-color cyan"
                 data-color="#a5f3fc"
                 title="cyan">
             </button>
 
             <button
-                class="color-button yellow"
+                class="annotate-color yellow selected"
                 data-color="#fff59d"
                 title="yellow">
             </button>
 
             <button
-                class="color-button green"
+                class="annotate-color green"
                 data-color="#bbf7d0"
                 title="green">
             </button>
 
-            <span class="annotation-divider"></span>
+            <span class="annotate-divider"></span>
 
-            <button
-                data-action="clear"
-                title="clear all annotations">
+            <button id="annotate-clear" title="clear annotations">
                 🗑
             </button>
         `;
 
         document.body.appendChild(toolbar);
 
-        toolbar.addEventListener("click", event => {
-            const button = event.target.closest("button");
+        // highlight
+        document
+            .getElementById("annotate-highlight")
+            .addEventListener("click", () => {
+                highlightSelection(content);
+            });
 
-            if (!button) return;
+        // note
+        document
+            .getElementById("annotate-note")
+            .addEventListener("click", () => {
+                addNote(content);
+            });
 
-            const action = button.dataset.action;
-            const color = button.dataset.color;
+        // colors
+        toolbar
+            .querySelectorAll(".annotate-color")
+            .forEach(button => {
+                button.addEventListener("click", () => {
+                    currentColor =
+                        button.dataset.color;
 
-            if (color) {
-                currentColor = color;
+                    toolbar
+                        .querySelectorAll(
+                            ".annotate-color"
+                        )
+                        .forEach(b =>
+                            b.classList.remove(
+                                "selected"
+                            )
+                        );
 
-                toolbar
-                    .querySelectorAll(".color-button")
-                    .forEach(button => {
-                        button.classList.remove("selected");
-                    });
+                    button.classList.add("selected");
+                });
+            });
 
-                button.classList.add("selected");
-
-                return;
-            }
-
-            if (action === "highlight") {
-                highlightSelection();
-            }
-
-            if (action === "note") {
-                addNote();
-            }
-
-            if (action === "clear") {
-                clearAnnotations();
-            }
-        });
-
-        const defaultColor =
-            toolbar.querySelector(
-                `[data-color="${currentColor}"]`
-            );
-
-        if (defaultColor) {
-            defaultColor.classList.add("selected");
-        }
+        // clear
+        document
+            .getElementById("annotate-clear")
+            .addEventListener("click", clearAnnotations);
     }
 
     // ─────────────────────────────────────────────
-    // selection
+    // get selected text
     // ─────────────────────────────────────────────
 
-    function getSelectionRange() {
+    function getSelection(content) {
         const selection = window.getSelection();
 
-        if (!selection || selection.rangeCount === 0) {
+        if (
+            !selection ||
+            selection.rangeCount === 0
+        ) {
             return null;
         }
 
-        const range = selection.getRangeAt(0);
+        const range =
+            selection.getRangeAt(0);
 
         if (range.collapsed) {
             return null;
         }
 
-        const content =
-            document.querySelector(CONTENT_SELECTOR);
-
         if (
-            !content ||
-            !content.contains(range.commonAncestorContainer)
+            !content.contains(
+                range.commonAncestorContainer
+            )
         ) {
             return null;
         }
@@ -167,43 +150,54 @@
     }
 
     // ─────────────────────────────────────────────
-    // highlighting
+    // highlight
     // ─────────────────────────────────────────────
 
-    function highlightSelection() {
-        const range = getSelectionRange();
+    function highlightSelection(content) {
+        const range = getSelection(content);
 
-        if (!range) return;
+        if (!range) {
+            alert("select some text first.");
+            return;
+        }
 
-        const selectedText = range.toString().trim();
+        const text =
+            range.toString().trim();
 
-        if (!selectedText) return;
+        if (!text) return;
 
-        const span = document.createElement("span");
+        const id =
+            "annotation-" +
+            Date.now();
 
-        span.className = "physics-lab-highlight";
-        span.style.backgroundColor = currentColor;
-        span.dataset.annotationId = crypto.randomUUID();
+        const span =
+            document.createElement("span");
+
+        span.className =
+            "physics-lab-highlight";
+
+        span.dataset.annotationId = id;
+
+        span.style.backgroundColor =
+            currentColor;
 
         try {
             range.surroundContents(span);
         } catch {
             alert(
                 "that selection crosses multiple elements. " +
-                "try highlighting a smaller section."
+                "try selecting text within one paragraph."
             );
 
             return;
         }
 
-        getPageAnnotations().push({
-            id: span.dataset.annotationId,
+        saveAnnotation({
+            id: id,
             type: "highlight",
-            text: selectedText,
+            text: text,
             color: currentColor
         });
-
-        saveAnnotations();
 
         window.getSelection().removeAllRanges();
     }
@@ -212,183 +206,124 @@
     // notes
     // ─────────────────────────────────────────────
 
-    function addNote() {
-        const range = getSelectionRange();
+    function addNote(content) {
+        const range = getSelection(content);
 
-        if (!range) return;
+        if (!range) {
+            alert("select some text first.");
+            return;
+        }
 
-        const selectedText = range.toString().trim();
+        const text =
+            range.toString().trim();
 
-        if (!selectedText) return;
+        if (!text) return;
 
-        const note = prompt(
-            `add a note for:\n\n"${selectedText}"`
-        );
+        const note =
+            prompt(
+                "enter your note:"
+            );
 
-        if (!note || !note.trim()) return;
+        if (!note || !note.trim()) {
+            return;
+        }
 
-        const id = crypto.randomUUID();
+        const id =
+            "annotation-" +
+            Date.now();
 
-        const span = document.createElement("span");
+        const span =
+            document.createElement("span");
 
-        span.className = "physics-lab-note";
+        span.className =
+            "physics-lab-note";
+
         span.dataset.annotationId = id;
-        span.title = note.trim();
+
+        span.title =
+            note.trim();
 
         try {
             range.surroundContents(span);
         } catch {
             alert(
                 "that selection crosses multiple elements. " +
-                "try selecting a smaller section."
+                "try selecting text within one paragraph."
             );
 
             return;
         }
 
-        getPageAnnotations().push({
-            id,
+        saveAnnotation({
+            id: id,
             type: "note",
-            text: selectedText,
+            text: text,
             note: note.trim()
         });
-
-        saveAnnotations();
 
         window.getSelection().removeAllRanges();
     }
 
     // ─────────────────────────────────────────────
-    // clear annotations
+    // localStorage
+    // ─────────────────────────────────────────────
+
+    function saveAnnotation(annotation) {
+        const page =
+            window.location.pathname;
+
+        const stored =
+            JSON.parse(
+                localStorage.getItem(
+                    STORAGE_KEY
+                ) || "{}"
+            );
+
+        if (!stored[page]) {
+            stored[page] = [];
+        }
+
+        stored[page].push(annotation);
+
+        localStorage.setItem(
+            STORAGE_KEY,
+            JSON.stringify(stored)
+        );
+
+        console.log(
+            "annotation saved:",
+            annotation
+        );
+    }
+
+    // ─────────────────────────────────────────────
+    // clear
     // ─────────────────────────────────────────────
 
     function clearAnnotations() {
-        const page = getPageKey();
+        const page =
+            window.location.pathname;
 
-        if (
-            !annotations[page] ||
-            annotations[page].length === 0
-        ) {
-            return;
-        }
-
-        const confirmed = confirm(
-            "delete all annotations on this page?"
+        localStorage.removeItem(
+            STORAGE_KEY
         );
 
-        if (!confirmed) return;
-
-        delete annotations[page];
-
-        saveAnnotations();
-
         location.reload();
-    }
-
-    // ─────────────────────────────────────────────
-    // restore saved annotations
-    // ─────────────────────────────────────────────
-
-    function restoreAnnotations() {
-        const pageAnnotations =
-            getPageAnnotations();
-
-        for (const annotation of pageAnnotations) {
-            const found =
-                findText(annotation.text);
-
-            if (!found) continue;
-
-            const span =
-                document.createElement("span");
-
-            span.dataset.annotationId =
-                annotation.id;
-
-            if (annotation.type === "highlight") {
-                span.className =
-                    "physics-lab-highlight";
-
-                span.style.backgroundColor =
-                    annotation.color;
-            }
-
-            if (annotation.type === "note") {
-                span.className =
-                    "physics-lab-note";
-
-                span.title =
-                    annotation.note;
-            }
-
-            try {
-                found.surroundContents(span);
-            } catch {
-                continue;
-            }
-        }
-    }
-
-    // ─────────────────────────────────────────────
-    // find text
-    // ─────────────────────────────────────────────
-
-    function findText(text) {
-        const content =
-            document.querySelector(
-                CONTENT_SELECTOR
-            );
-
-        if (!content || !text) {
-            return null;
-        }
-
-        const walker =
-            document.createTreeWalker(
-                content,
-                NodeFilter.SHOW_TEXT
-            );
-
-        let node;
-
-        while (node = walker.nextNode()) {
-            const index =
-                node.nodeValue.indexOf(text);
-
-            if (index !== -1) {
-                const range =
-                    document.createRange();
-
-                range.setStart(
-                    node,
-                    index
-                );
-
-                range.setEnd(
-                    node,
-                    index + text.length
-                );
-
-                return range;
-            }
-        }
-
-        return null;
     }
 
     // ─────────────────────────────────────────────
     // styles
     // ─────────────────────────────────────────────
 
-    function injectStyles() {
+    function createStyles() {
         const style =
             document.createElement("style");
 
         style.textContent = `
             #physics-lab-annotation-toolbar {
                 position: fixed;
-                bottom: 20px;
                 left: 50%;
+                bottom: 24px;
 
                 transform: translateX(-50%);
 
@@ -396,90 +331,89 @@
                 align-items: center;
                 gap: 6px;
 
-                padding: 8px 10px;
+                padding: 8px;
 
                 background: white;
 
-                border: 1px solid #ddd;
+                border: 1px solid #d1d5db;
                 border-radius: 12px;
 
                 box-shadow:
-                    0 4px 20px
-                    rgba(0, 0, 0, 0.15);
+                    0 8px 30px
+                    rgba(0, 0, 0, 0.16);
 
                 z-index: 999999;
 
                 font-family:
+                    Inter,
                     system-ui,
-                    -apple-system,
-                    BlinkMacSystemFont,
-                    "Segoe UI",
                     sans-serif;
             }
 
             #physics-lab-annotation-toolbar
             button {
-                width: 34px;
-                height: 34px;
+                width: 36px;
+                height: 36px;
 
-                border: none;
-                border-radius: 7px;
+                padding: 0;
+
+                border: 0;
+                border-radius: 8px;
 
                 background: transparent;
 
                 cursor: pointer;
 
-                font-size: 17px;
-
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+                font-size: 17px;
             }
 
             #physics-lab-annotation-toolbar
             button:hover {
-                background: #f0f0f0;
+                background: #f1f5f9;
             }
 
-            .annotation-divider {
+            .annotate-divider {
                 width: 1px;
                 height: 24px;
 
-                background: #ddd;
+                background: #d1d5db;
 
                 margin: 0 3px;
             }
 
-            .color-button {
+            .annotate-color {
                 border: 2px solid transparent !important;
-                position: relative;
             }
 
-            .color-button.cyan {
+            .annotate-color.cyan {
                 background: #a5f3fc !important;
             }
 
-            .color-button.yellow {
+            .annotate-color.yellow {
                 background: #fff59d !important;
             }
 
-            .color-button.green {
+            .annotate-color.green {
                 background: #bbf7d0 !important;
             }
 
-            .color-button.selected {
-                border-color: #555 !important;
+            .annotate-color.selected {
+                border-color: #374151 !important;
                 transform: scale(1.08);
             }
 
             .physics-lab-highlight {
-                border-radius: 2px;
                 padding: 1px 0;
+                border-radius: 2px;
             }
 
             .physics-lab-note {
                 border-bottom:
-                    2px dotted #777;
+                    2px dotted #64748b;
 
                 cursor: help;
             }
@@ -489,32 +423,8 @@
     }
 
     // ─────────────────────────────────────────────
-    // initialize
+    // start
     // ─────────────────────────────────────────────
-
-    function init() {
-        const content =
-            document.querySelector(
-                CONTENT_SELECTOR
-            );
-
-        if (!content) {
-            console.warn(
-                "physics lab annotations: " +
-                "no <main> element found."
-            );
-
-            return;
-        }
-
-        injectStyles();
-        createToolbar();
-
-        setTimeout(
-            restoreAnnotations,
-            100
-        );
-    }
 
     if (
         document.readyState ===
