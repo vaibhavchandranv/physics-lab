@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>7.5 polarisation · physics lab</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="preconnect" href="https://rsms.me" />
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+  <link rel="stylesheet" href="../../../styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+  <script src="https://vaibis.github.io/physics-lab/mathjax.js"></script>
+</head>
+
+<body>
+<div class="bg-grid"></div>
+<div class="bg-fade"></div>
+
+<div class="shell">
+
+  <div class="sidebar">
+    <a href="index.html" class="sidebar-back">← back</a>
+    <div class="sidebar-title">unit 7</div>
+
+    <a href="progressive-waves.html" class="nav-item">7.1 progressive waves</a>
+    <a href="transverse-longitudinal.html" class="nav-item">7.2 transverse and longitudinal waves</a>
+    <a href="doppler-effect.html" class="nav-item">7.3 doppler effect for sound waves</a>
+    <a href="electromagnetic-spectrum.html" class="nav-item">7.4 electromagnetic spectrum</a>
+    <a href="polarisation.html" class="nav-item active">7.5 polarisation</a>
+  </div>
+
+  <div class="content">
+
+  <div class="topic-num">7.5</div>
+  <h1 class="title">polarisation</h1>
+
+<div class="section">
+
+  <h2>what is polarisation?</h2>
+
+  <p>
+    polarisation is the restriction of the oscillations of a transverse wave
+    to a particular direction.
+  </p>
+
+  <p>
+    because polarisation requires the oscillations to be restricted to a
+    particular direction, it is a phenomenon associated with
+    <strong>transverse waves</strong>.
+  </p>
+
+  <p>
+    longitudinal waves cannot be polarised because their oscillations are
+    already parallel to the direction of propagation.
+  </p>
+
+</div>
+
+<div class="section">
+
+  <h2>plane-polarised electromagnetic waves</h2>
+
+  <p>
+    an electromagnetic wave is plane-polarised when its electric field
+    oscillates in one fixed direction perpendicular to the direction of
+    propagation.
+  </p>
+
+  <p>
+    a polarising filter only allows the component of the electric field
+    parallel to its transmission axis to pass through.
+  </p>
+
+  <img src="https://cdn.shopify.com/s/files/1/0093/2298/7617/files/Screen_Shot_2022-04-21_at_11.16.24_AM.png?v=1650503798">
+</div>
+
+<div class="section">
+
+  <h2>malus's law</h2>
+
+  <p>
+    when a plane-polarised electromagnetic wave passes through a polarising
+    filter, the transmitted intensity depends on the angle between the
+    polarisation direction of the incident wave and the transmission axis of
+    the filter.
+  </p>
+
+  <p class="formula">
+    $$\boxed{I=I_0\cos^2\theta}$$
+  </p>
+
+  <ul>
+    <li>\(I\) = transmitted intensity after the filter</li>
+    <li>\(I_0\) = intensity of the plane-polarised incident wave</li>
+    <li>\(\theta\) = angle between the incident polarisation direction and the transmission axis of the filter</li>
+  </ul>
+
+  <p>
+    this relationship is known as <strong>malus's law</strong>.
+  </p>
+
+</div>
+
+<div class="section">
+
+  <h2>special cases</h2>
+
+  <p>
+    when the transmission axis is parallel to the polarisation direction,
+    \(\theta=0^\circ\).
+  </p>
+
+  <p class="formula">
+    $$I=I_0\cos^2(0^\circ)=I_0$$
+  </p>
+
+  <p>
+    therefore, the intensity is unchanged.
+  </p>
+
+  <p>
+    when the transmission axis is perpendicular to the polarisation
+    direction, \(\theta=90^\circ\).
+  </p>
+
+  <p class="formula">
+    $$I=I_0\cos^2(90^\circ)=0$$
+  </p>
+
+  <p>
+    therefore, no light is transmitted.
+  </p>
+
+  <p>
+    when \(\theta=45^\circ\),
+  </p>
+
+  <p class="formula">
+    $$I=I_0\cos^2(45^\circ)=\frac{1}{2}I_0$$
+  </p>
+
+  <p>
+    therefore, half of the incident intensity is transmitted.
+  </p>
+
+</div>
+
+<div class="section">
+
+  <h2>series of polarising filters</h2>
+
+  <p>
+    malus's law can be applied repeatedly when a plane-polarised wave passes
+    through a series of polarising filters.
+  </p>
+
+  <p>
+    after the first filter,
+  </p>
+
+  <p class="formula">
+    $$I_1=I_0\cos^2\theta_1$$
+  </p>
+
+  <p>
+    the intensity after the next filter is then
+  </p>
+
+  <p class="formula">
+    $$I_2=I_1\cos^2\theta_2$$
+  </p>
+
+  <p>
+    and so on for additional filters.
+  </p>
+
+  <p>
+    for two filters, this can be combined into
+  </p>
+
+  <p class="formula">
+    $$\boxed{
+    I_2=I_0\cos^2\theta_1\cos^2\theta_2
+    }$$
+  </p>
+
+  <p>
+    here, \(\theta_2\) is the angle between the transmission axes of the two
+    filters, while \(\theta_1\) is the angle between the original
+    polarisation direction and the first filter's transmission axis.
+  </p>
+
+</div>
+
+<div class="section">
+
+  <h2>worked example</h2>
+
+  <p>
+    a plane-polarised electromagnetic wave has an intensity of
+    \(80\,\mathrm{W\,m^{-2}}\). it passes through a polarising filter whose
+    transmission axis is at \(30^\circ\) to the direction of polarisation.
+    find the transmitted intensity.
+  </p>
+
+  <p>
+    using malus's law,
+  </p>
+
+  <p class="formula">
+    $$I=I_0\cos^2\theta$$
+  </p>
+
+  <p class="formula">
+    $$I=80\cos^2(30^\circ)$$
+  </p>
+
+  <p class="formula">
+    $$I=80\left(\frac{\sqrt3}{2}\right)^2$$
+  </p>
+
+  <p class="formula">
+    $$\boxed{I=60\,\mathrm{W\,m^{-2}}}$$
+  </p>
+
+</div>
+
+<div class="section">
+
+  <h2>important limitation</h2>
+
+  <p>
+    the calculation of the intensity after a polarising filter is required
+    when the incident wave is already <strong>plane-polarised</strong>.
+  </p>
+
+  <p>
+    calculations involving the effect of a polarising filter on an
+    <strong>unpolarised</strong> wave are not required for this syllabus.
+  </p>
+
+</div>
+
+<div class="section">
+
+  <h2>summary</h2>
+
+  <ul>
+    <li>polarisation is a phenomenon associated with transverse waves.</li>
+    <li>a plane-polarised electromagnetic wave has its electric field oscillating in one fixed direction.</li>
+    <li>a polarising filter transmits the component of the electric field parallel to its transmission axis.</li>
+    <li>malus's law is \(I=I_0\cos^2\theta\).</li>
+    <li>\(\theta\) is the angle between the incident polarisation direction and the transmission axis.</li>
+    <li>malus's law can be applied successively to a series of polarising filters.</li>
+    <li>calculations for an unpolarised incident wave are not required.</li>
+  </ul>
+
+</div>
+
+</div>
+</body>
+</html>
